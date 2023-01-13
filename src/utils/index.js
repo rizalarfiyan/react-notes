@@ -53,4 +53,13 @@ const showFormattedDate = (date) => {
   return new Date(date).toLocaleDateString('id-ID', options)
 }
 
-export { getInitialData, showFormattedDate }
+const getYear = () => {
+  const currentYear = new Date().getFullYear()
+  let yearDate = currentYear
+  if (currentYear !== 2023) {
+    yearDate = `2023 - ${currentYear}`
+  }
+  return yearDate
+}
+
+export { getInitialData, showFormattedDate, getYear }
