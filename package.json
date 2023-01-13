@@ -1,21 +1,40 @@
 {
-  "name": "my-personal-notes",
+  "name": "react-notes",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "npm run prettier && npm run eslint",
+    "check": "npm run prettier:check && npm run eslint:check",
+    "eslint": "eslint --ignore-path .gitignore --max-warnings=0 . --ext .js,.jsx,.ts,.tsx --fix",
+    "eslint:check": "eslint1 --ignore-path .gitignore --max-warnings=0 --ext .js,.jsx,.ts,.tsx .",
+    "prettier": "prettier --ignore-path .gitignore --write ./src",
+    "prettier:check": "prettier --ignore-path .gitignore --check ./src"
+  },
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.0.1",
-    "@testing-library/user-event": "^13.5.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.0.1",
+    "@testing-library/user-event": "^13.5.0",
+    "eslint": "^8.31.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.27.4",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^2.8.2",
+    "prettier-plugin-tailwindcss": "^0.2.1",
+    "tailwindcss": "^3.2.4"
   },
   "eslintConfig": {
     "extends": [
