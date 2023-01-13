@@ -16,5 +16,6 @@ module.exports = {
   plugins: ['react'],
   rules: {
     'react/prefer-stateless-function': 0,
+    'jsx-a11y/label-has-associated-control': 0,
   },
 }
