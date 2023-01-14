@@ -1,7 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Icon from './Icon'
 
-function Search() {
+function Search({ onSearch }) {
+  const handleSearch = (event) => {
+    onSearch(event.target.value)
+    event.preventDefault()
+  }
+
   return (
     <div>
       <label htmlFor='search' className='sr-only'>
@@ -16,11 +22,15 @@ function Search() {
           id='search'
           className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500'
           placeholder='Search...'
+          onChange={handleSearch}
           required
         />
       </div>
     </div>
   )
+}
+Search.propTypes = {
+  onSearch: PropTypes.func.isRequired,
 }
 
 export default Search

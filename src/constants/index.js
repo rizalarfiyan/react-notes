@@ -1,8 +1,8 @@
 const APP_NAME = 'React Notes'
 const MAX_TITLE = 50
-const FILTER = [
+const FILTER_NOTE = [
   {
-    name: 'all',
+    name: 'All',
   },
   {
     name: 'Active',
@@ -20,4 +20,4 @@ const FILTER = [
   },
 ]
 
-export { APP_NAME, MAX_TITLE, FILTER }
+export { APP_NAME, MAX_TITLE, FILTER_NOTE }

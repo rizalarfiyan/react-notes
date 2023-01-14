@@ -6,12 +6,9 @@ module.exports = {
       screens: {
         xs: '480px',
       },
-      container: {
-        center: true,
-        padding: {
-          DEFAULT: '0.75rem',
-        },
-      },
+    },
+    container: {
+      container: false,
     },
   },
   plugins: [],
