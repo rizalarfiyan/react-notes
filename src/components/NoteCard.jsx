@@ -46,15 +46,13 @@ function NoteCard({ data, onDelete, onToggleArchive }) {
 }
 
 NoteCard.propTypes = {
-  data: PropTypes.objectOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      body: PropTypes.string.isRequired,
-      createdAt: PropTypes.string.isRequired,
-      archived: PropTypes.bool,
-    })
-  ).isRequired,
+  data: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    archived: PropTypes.bool.isRequired,
+  }).isRequired,
   onDelete: PropTypes.func.isRequired,
   onToggleArchive: PropTypes.func.isRequired,
 }

@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 import Button from './Button'
 import Icon from './Icon'
 import Input from './Input'
 import { MAX_TITLE } from '../constants'
+import { addNote } from '../utils/local-data'
 
-function CreateNote({ onCreate }) {
+function CreateNote() {
   const emptyState = {
     title: '',
     note: '',
@@ -13,7 +13,7 @@ function CreateNote({ onCreate }) {
   const [state, setState] = useState(emptyState)
 
   const handleFormSubmit = (event) => {
-    onCreate({
+    addNote({
       title: state.title,
       body: state.note,
     })
@@ -73,10 +73,6 @@ function CreateNote({ onCreate }) {
       </div>
     </div>
   )
-}
-
-CreateNote.propTypes = {
-  onCreate: PropTypes.func.isRequired,
 }
 
 export default CreateNote

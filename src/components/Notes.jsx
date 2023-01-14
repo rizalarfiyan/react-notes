@@ -4,23 +4,41 @@ import { FILTER_NOTE } from '../constants'
 import NoteCard from './NoteCard'
 import { classNames } from '../utils'
 import Alert from './Alert'
+import {
+  deleteNote,
+  getFilterNotes,
+  toggleArchiveNote,
+} from '../utils/local-data'
 
-function Notes({ data, search, onDelete, onToggleArchive }) {
+function Notes({ search }) {
   const [filter, setFilter] = useState(undefined)
+  const [signal, setSignal] = useState(0)
 
   const handleChangeFilter = (event) => {
     setFilter(FILTER_NOTE[event.target.value].filter)
     event.preventDefault()
   }
 
+  const handleDelete = (id) => {
+    deleteNote(id)
+    setSignal((prev) => prev + 1)
+  }
+
+  const handleToggleArchive = (id) => {
+    toggleArchiveNote(id)
+    setSignal((prev) => prev + 1)
+  }
+
   const notes = useMemo(() => {
     const searchRegex = search && new RegExp(`${search}`, 'gi')
-    return data.filter(
-      (val) =>
+    const callbackSearch = (val) => {
+      return (
         (!searchRegex || searchRegex.test(val.title)) &&
         (!filter || val[filter.key] === filter.value)
-    )
-  }, [data, search, filter])
+      )
+    }
+    return getFilterNotes(callbackSearch)
+  }, [search, filter, signal])
 
   const hasNote = notes.length > 0
   return (
@@ -58,8 +76,8 @@ function Notes({ data, search, onDelete, onToggleArchive }) {
             <NoteCard
               key={val.id}
               data={val}
-              onDelete={onDelete}
-              onToggleArchive={onToggleArchive}
+              onDelete={handleDelete}
+              onToggleArchive={handleToggleArchive}
             />
           )
         })}
@@ -73,18 +91,7 @@ Notes.defaultProps = {
 }
 
 Notes.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      body: PropTypes.string.isRequired,
-      createdAt: PropTypes.string.isRequired,
-      archived: PropTypes.bool,
-    })
-  ).isRequired,
   search: PropTypes.string,
-  onDelete: PropTypes.func.isRequired,
-  onToggleArchive: PropTypes.func.isRequired,
 }
 
 export default Notes
