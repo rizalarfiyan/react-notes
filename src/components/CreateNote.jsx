@@ -2,15 +2,22 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Button from './Button'
 import Icon from './Icon'
+import Input from './Input'
+import { MAX_TITLE } from '../constants'
 
 function CreateNote({ onCreate }) {
-  const [state, setState] = useState({
+  const emptyState = {
     title: '',
     note: '',
-  })
+  }
+  const [state, setState] = useState(emptyState)
 
   const handleFormSubmit = (event) => {
-    onCreate(state)
+    onCreate({
+      title: state.title,
+      body: state.note,
+    })
+    setState(emptyState)
     event.preventDefault()
   }
 
@@ -32,41 +39,26 @@ function CreateNote({ onCreate }) {
             </h2>
           </div>
           <form className='w-full space-y-6' onSubmit={handleFormSubmit}>
-            <div>
-              <label
-                htmlFor='title'
-                className='mb-2 block text-sm font-medium text-gray-900'
-              >
-                Title
-              </label>
-              <input
-                type='text'
-                id='title'
-                name='title'
-                className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:outline-blue-500 focus:ring-blue-500'
-                placeholder='Write your title...'
-                value={state.title}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label
-                htmlFor='note'
-                className='mb-2 block text-sm font-medium text-gray-900'
-              >
-                Note
-              </label>
-              <textarea
-                type='text'
-                id='note'
-                name='note'
-                className='block max-h-[220px] min-h-[44px] w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:outline-blue-500 focus:ring-blue-500'
-                rows={5}
-                placeholder='Write your note...'
-                value={state.note}
-                onChange={handleChange}
-              />
-            </div>
+            <Input
+              id='title'
+              title='Title'
+              type='text'
+              name='title'
+              placeholder='Write your title...'
+              value={state.title}
+              limit={MAX_TITLE}
+              onChange={handleChange}
+            />
+            <Input
+              id='note'
+              as='textarea'
+              title='Note'
+              name='note'
+              rows={5}
+              placeholder='Write your note...'
+              value={state.note}
+              onChange={handleChange}
+            />
             <div>
               <Button
                 isSubmit

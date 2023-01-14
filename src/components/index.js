@@ -8,6 +8,7 @@ import Search from './Search'
 import Title from './Title'
 import Button from './Button'
 import Alert from './Alert'
+import Input from './Input'
 
 export {
   CreateNote,
@@ -20,4 +21,5 @@ export {
   Title,
   Button,
   Alert,
+  Input,
 }
