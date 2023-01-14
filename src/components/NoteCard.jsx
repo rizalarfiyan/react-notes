@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link as LinkDom } from 'react-router-dom'
 import { showFormattedDate } from '../utils'
 import Button from './Button'
+import Link from './Link'
 import Icon from './Icon'
 
 function NoteCard({ data, onDelete, onToggleArchive }) {
@@ -18,9 +20,19 @@ function NoteCard({ data, onDelete, onToggleArchive }) {
       <span className='text-sm text-gray-500'>
         {showFormattedDate(data.createdAt)}
       </span>
-      <h2 className='my-2 text-xl font-semibold text-gray-900'>{data.title}</h2>
+      <LinkDom to={`/note/${data.id}`}>
+        <h2 className='my-2 text-xl font-semibold text-gray-900 underline decoration-slate-200 underline-offset-4'>
+          {data.title}
+        </h2>
+      </LinkDom>
       <p className='text-gray-700'>{data.body}</p>
       <div className='mt-6 flex items-center justify-center gap-3'>
+        <Link
+          to={`/note/edit/${data.id}`}
+          rightIcon={<Icon name='edit' className='ml-2 h-5 w-5' />}
+        >
+          Edit
+        </Link>
         <Button
           type='button'
           rightIcon={

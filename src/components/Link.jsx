@@ -10,6 +10,7 @@ function Button({
   isFluid,
   variant,
   size,
+  className,
   ...rest
 }) {
   const getVariant = useMemo(() => {
@@ -46,7 +47,8 @@ function Button({
         'relative m-0 inline-flex flex-shrink-0 cursor-pointer select-none appearance-none items-center justify-center whitespace-nowrap rounded-md border bg-transparent align-middle font-medium leading-tight shadow-sm outline-none duration-75 ease-out',
         getVariant,
         getSize,
-        isFluid && 'w-full'
+        isFluid && 'w-full',
+        className
       )}
       {...rest}
     >
@@ -61,17 +63,19 @@ Button.defaultProps = {
   isFluid: false,
   leftIcon: '',
   rightIcon: '',
-  variant: 'primary',
+  variant: 'info',
   size: 'md',
+  className: '',
 }
 
 Button.propTypes = {
+  className: PropTypes.string,
   leftIcon: PropTypes.node,
   rightIcon: PropTypes.node,
   children: PropTypes.node.isRequired,
   isFluid: PropTypes.bool,
-  variant: PropTypes.string,
-  size: PropTypes.string,
+  variant: PropTypes.oneOf(['danger', 'warning', 'success', 'info']),
+  size: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
 }
 
 export default Button
