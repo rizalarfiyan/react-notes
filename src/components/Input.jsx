@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { classNames } from '../utils'
 
@@ -10,6 +10,7 @@ function Input({
   title,
   limit,
   onChange,
+  value,
   ...rest
 }) {
   const [length, setLength] = useState(0)
@@ -26,6 +27,10 @@ function Input({
     if (getLength >= limit) return
     onChange(event)
   }
+
+  useEffect(() => {
+    setLength(value.length)
+  }, [])
 
   return (
     <div>
@@ -53,6 +58,7 @@ function Input({
           Element === 'textarea' && 'max-h-[220px] min-h-[44px]'
         )}
         onChange={handleChange}
+        value={value}
         {...rest}
       />
       {hasLimit && (
@@ -75,6 +81,7 @@ Input.defaultProps = {
   title: '',
   limit: 0,
   onChange: () => {},
+  value: '',
 }
 
 Input.propTypes = {
@@ -85,6 +92,7 @@ Input.propTypes = {
   title: PropTypes.string,
   limit: PropTypes.number,
   onChange: PropTypes.func,
+  value: PropTypes.string,
 }
 
 export default Input
