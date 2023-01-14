@@ -6,5 +6,18 @@ import NoteCard from './NoteCard'
 import Notes from './Notes'
 import Search from './Search'
 import Title from './Title'
+import Button from './Button'
+import Alert from './Alert'
 
-export { CreateNote, Footer, Icon, Navbar, NoteCard, Notes, Search, Title }
+export {
+  CreateNote,
+  Footer,
+  Icon,
+  Navbar,
+  NoteCard,
+  Notes,
+  Search,
+  Title,
+  Button,
+  Alert,
+}

@@ -2,6 +2,8 @@ import React, { useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { FILTER_NOTE } from '../constants'
 import NoteCard from './NoteCard'
+import { classNames } from '../utils'
+import Alert from './Alert'
 
 function Notes({ data, search, onDelete, onToggleArchive }) {
   const [filter, setFilter] = useState(undefined)
@@ -20,6 +22,7 @@ function Notes({ data, search, onDelete, onToggleArchive }) {
     )
   }, [data, search, filter])
 
+  const hasNote = notes.length > 0
   return (
     <div className='container'>
       <div className='flex items-center justify-between'>
@@ -43,15 +46,18 @@ function Notes({ data, search, onDelete, onToggleArchive }) {
           </select>
         </div>
       </div>
-      <div className='flex items-center justify-center'>
+      <div
+        className={classNames(
+          'mt-8 mb-14',
+          hasNote && 'columns-1 md:columns-2 lg:columns-3'
+        )}
+      >
+        {!hasNote && <Alert message='Note not found!' />}
         {notes.map((val) => {
           return (
             <NoteCard
               key={val.id}
-              noteId={val.id}
-              title={val.title}
-              body={val.body}
-              createdAt={val.createdAt}
+              data={val}
               onDelete={onDelete}
               onToggleArchive={onToggleArchive}
             />
