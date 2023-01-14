@@ -1,4 +1,3 @@
-import CreateNote from './CreateNote'
 import Footer from './Footer'
 import Icon from './Icon'
 import Navbar from './Navbar'
@@ -9,9 +8,10 @@ import Title from './Title'
 import Button from './Button'
 import Alert from './Alert'
 import Input from './Input'
+import CardInput from './CardInput'
+import Link from './Link'
 
 export {
-  CreateNote,
   Footer,
   Icon,
   Navbar,
@@ -22,4 +22,6 @@ export {
   Button,
   Alert,
   Input,
+  CardInput,
+  Link,
 }

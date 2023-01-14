@@ -9,7 +9,7 @@ function Search({ onSearch }) {
   }
 
   return (
-    <div>
+    <div className='w-full py-4'>
       <label htmlFor='search' className='sr-only'>
         Search
       </label>
