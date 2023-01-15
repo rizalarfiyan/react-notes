@@ -1,7 +1,14 @@
 import React, { useRef } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { Navbar, Footer, Link, Icon } from './components'
-import { ListNote, CreateNote, NotFound, DetailNote, EditNote } from './pages'
+import {
+  ListNote,
+  CreateNote,
+  NotFound,
+  DetailNote,
+  EditNote,
+  Login,
+} from './pages'
 
 function App() {
   const ref = useRef(null)
@@ -29,6 +36,7 @@ function App() {
       >
         <Routes>
           <Route path='/' element={<ListNote parentRef={ref} />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/create' element={<CreateNote />} />
           <Route path='/note/:id' element={<DetailNote parentRef={ref} />} />
           <Route path='/note/edit/:id' element={<EditNote />} />

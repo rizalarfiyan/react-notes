@@ -11,11 +11,14 @@ function Input({
   limit,
   onChange,
   value,
+  error,
   ...rest
 }) {
   const [length, setLength] = useState(0)
   const hasLimit = limit !== 0
   const isLimit = length === limit
+  const hasError = error !== ''
+  const hasErrorLimit = (hasLimit && isLimit) || hasError
 
   const handleChange = (event) => {
     if (!hasLimit) {
@@ -39,7 +42,7 @@ function Input({
         className={classNames(
           title !== ''
             ? `mb-2 block text-sm font-medium ${
-                hasLimit && isLimit ? 'text-red-500' : 'text-gray-900'
+                hasErrorLimit ? 'text-red-500' : 'text-gray-900'
               }`
             : 'sr-only'
         )}
@@ -52,7 +55,7 @@ function Input({
         id={id}
         className={classNames(
           'block w-full rounded-lg border p-2.5 text-sm',
-          hasLimit && isLimit
+          hasErrorLimit
             ? 'border-red-300 bg-red-50 text-red-900 focus:outline-red-500 focus:ring-red-500'
             : 'border-gray-300 bg-gray-50 text-gray-900 focus:outline-blue-500 focus:ring-blue-500',
           Element === 'textarea' && 'max-h-[220px] min-h-[44px]'
@@ -71,6 +74,9 @@ function Input({
           {length}/{limit}
         </p>
       )}
+      {hasError && (
+        <p className='mt-1 text-left text-sm text-red-500'>{error}</p>
+      )}
     </div>
   )
 }
@@ -82,6 +88,7 @@ Input.defaultProps = {
   limit: 0,
   onChange: () => {},
   value: '',
+  error: '',
 }
 
 Input.propTypes = {
@@ -93,6 +100,7 @@ Input.propTypes = {
   limit: PropTypes.number,
   onChange: PropTypes.func,
   value: PropTypes.string,
+  error: PropTypes.string,
 }
 
 export default Input

@@ -1,10 +1,12 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { classNames } from '../utils'
+import Spinner from './Spinner'
 
 function Button({
   isSubmit,
-  isDisabled,
+  isLoading,
+  disabled,
   leftIcon,
   rightIcon,
   children,
@@ -42,6 +44,7 @@ function Button({
     }
   }, [size])
 
+  const isDisabled = disabled || isLoading
   return (
     <button
       type={isSubmit ? 'submit' : 'button'}
@@ -52,19 +55,23 @@ function Button({
         getVariant,
         getSize,
         isFluid && 'w-full',
+        isDisabled &&
+          'disabled:cursor-not-allowed disabled:opacity-60 disabled:shadow-none',
         className
       )}
       {...rest}
     >
-      {leftIcon || null}
-      {children}
-      {rightIcon || null}
+      {leftIcon && !isLoading ? leftIcon : null}
+      {isLoading && <Spinner className='absolute mr-0' size='sm' />}
+      {isLoading ? <span className='opacity-0'>{children}</span> : children}
+      {rightIcon && !isLoading ? rightIcon : null}
     </button>
   )
 }
 
 Button.defaultProps = {
-  isDisabled: false,
+  disabled: false,
+  isLoading: false,
   isSubmit: false,
   isFluid: false,
   leftIcon: '',
@@ -76,7 +83,8 @@ Button.defaultProps = {
 
 Button.propTypes = {
   className: PropTypes.string,
-  isDisabled: PropTypes.bool,
+  disabled: PropTypes.bool,
+  isLoading: PropTypes.bool,
   leftIcon: PropTypes.node,
   rightIcon: PropTypes.node,
   children: PropTypes.node.isRequired,

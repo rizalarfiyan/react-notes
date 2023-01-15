@@ -10,6 +10,8 @@ import Alert from './Alert'
 import Input from './Input'
 import CardInput from './CardInput'
 import Link from './Link'
+import Spinner from './Spinner'
+import Notification from './Notification'
 
 export {
   Footer,
@@ -24,4 +26,6 @@ export {
   Input,
   CardInput,
   Link,
+  Spinner,
+  Notification,
 }
