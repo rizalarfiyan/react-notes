@@ -30,11 +30,11 @@ const useForm = (initialState = {}, callbackValidation = undefined) => {
 
   const validation = (key, value) => {
     if (callbackValidation) {
-      callbackValidation(key, value, setError, clearError)
+      callbackValidation(key, value, setError, clearError, state.form)
     }
     const isDisable = Object.keys(state.error).reduce((acc, val) => {
       let data = acc
-      if (state.error[val] !== '' && !acc) {
+      if ((state.error[val] !== '' && !acc) || state.form[val] === '') {
         data = true
       }
       return data

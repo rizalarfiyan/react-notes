@@ -9,6 +9,7 @@ import {
   EditNote,
   Login,
 } from './pages'
+import Register from './pages/Register'
 
 function App() {
   const ref = useRef(null)
@@ -37,6 +38,7 @@ function App() {
         <Routes>
           <Route path='/' element={<ListNote parentRef={ref} />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
           <Route path='/create' element={<CreateNote />} />
           <Route path='/note/:id' element={<DetailNote parentRef={ref} />} />
           <Route path='/note/edit/:id' element={<EditNote />} />
