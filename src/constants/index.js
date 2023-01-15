@@ -27,10 +27,21 @@ const FILTER_NOTE_TYPE = [
   },
 ]
 
+const MODE = {
+  dark: 'dark',
+  light: 'light',
+}
+
+const STORAGE_KEY = {
+  theme: 'theme',
+}
+
 export {
   APP_NAME,
   MAX_TITLE,
   DEFAULT_FILTER_SLUG,
   DEFAULT_DURATION_NOTIFICATION,
   FILTER_NOTE_TYPE,
+  MODE,
+  STORAGE_KEY,
 }

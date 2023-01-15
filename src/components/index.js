@@ -12,6 +12,7 @@ import CardInput from './CardInput'
 import Link from './Link'
 import Spinner from './Spinner'
 import Notification from './Notification'
+import MainContainer from './MainContainer'
 
 export {
   Footer,
@@ -28,4 +29,5 @@ export {
   Link,
   Spinner,
   Notification,
+  MainContainer,
 }

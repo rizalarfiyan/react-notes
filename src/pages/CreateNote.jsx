@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, CardInput, Icon, Input } from '../components'
+import { Button, CardInput, Icon, Input, MainContainer } from '../components'
 import { MAX_TITLE } from '../constants'
 import { addNote } from '../utils/local-data'
 
@@ -28,39 +28,41 @@ function CreateNote() {
   }
 
   return (
-    <CardInput title='Create a Note'>
-      <form className='w-full space-y-6' onSubmit={handleFormSubmit}>
-        <Input
-          id='title'
-          title='Title'
-          type='text'
-          name='title'
-          placeholder='Write your title...'
-          value={state.title}
-          limit={MAX_TITLE}
-          onChange={handleChange}
-        />
-        <Input
-          id='note'
-          as='textarea'
-          title='Note'
-          name='note'
-          rows={5}
-          placeholder='Write your note...'
-          value={state.note}
-          onChange={handleChange}
-        />
-        <div>
-          <Button
-            isSubmit
-            isFluid
-            rightIcon={<Icon name='add' className='ml-2 h-5 w-5' />}
-          >
-            Create
-          </Button>
-        </div>
-      </form>
-    </CardInput>
+    <MainContainer isCenter>
+      <CardInput title='Create a Note'>
+        <form className='w-full space-y-6' onSubmit={handleFormSubmit}>
+          <Input
+            id='title'
+            title='Title'
+            type='text'
+            name='title'
+            placeholder='Write your title...'
+            value={state.title}
+            limit={MAX_TITLE}
+            onChange={handleChange}
+          />
+          <Input
+            id='note'
+            as='textarea'
+            title='Note'
+            name='note'
+            rows={5}
+            placeholder='Write your note...'
+            value={state.note}
+            onChange={handleChange}
+          />
+          <div>
+            <Button
+              isSubmit
+              isFluid
+              rightIcon={<Icon name='add' className='ml-2 h-5 w-5' />}
+            >
+              Create
+            </Button>
+          </div>
+        </form>
+      </CardInput>
+    </MainContainer>
   )
 }
 

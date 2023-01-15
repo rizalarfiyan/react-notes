@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Button, CardInput, Icon, Input } from '../components'
+import { Button, CardInput, Icon, Input, MainContainer } from '../components'
 import { useForm, useNotification } from '../hooks'
 import { register } from '../utils/network-data'
 
@@ -88,74 +88,76 @@ function Register() {
   }
 
   return (
-    <CardInput title='Create an Account'>
-      <form className='w-full space-y-6' onSubmit={handleFormSubmit}>
-        <Input
-          id='email'
-          title='Email'
-          type='email'
-          name='email'
-          placeholder='Your email...'
-          value={form.email}
-          error={error.email}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        <Input
-          id='name'
-          title='Name'
-          type='text'
-          name='name'
-          placeholder='Your Name...'
-          value={form.name}
-          error={error.name}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        <Input
-          id='password'
-          title='Password'
-          type='password'
-          name='password'
-          placeholder='Your password...'
-          value={form.password}
-          error={error.password}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        <Input
-          id='password_confirmation'
-          title='Password Confirmation'
-          type='password'
-          name='password_confirmation'
-          placeholder='Your password confirmation...'
-          value={form.password_confirmation}
-          error={error.password_confirmation}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        <div>
-          <Button
-            isSubmit
-            isFluid
-            isLoading={isLoading}
-            disabled={isDisabled}
-            rightIcon={<Icon name='register' className='ml-2 h-5 w-5' />}
-          >
-            Register
-          </Button>
-        </div>
-        <div className='text-gray-600'>
-          <span>Have an account? </span>
-          <Link
-            to='/login'
-            className='text-blue-500 underline decoration-blue-500 underline-offset-4'
-          >
-            Go login
-          </Link>
-        </div>
-      </form>
-    </CardInput>
+    <MainContainer isCenter>
+      <CardInput title='Create an Account'>
+        <form className='w-full space-y-6' onSubmit={handleFormSubmit}>
+          <Input
+            id='email'
+            title='Email'
+            type='email'
+            name='email'
+            placeholder='Your email...'
+            value={form.email}
+            error={error.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <Input
+            id='name'
+            title='Name'
+            type='text'
+            name='name'
+            placeholder='Your Name...'
+            value={form.name}
+            error={error.name}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <Input
+            id='password'
+            title='Password'
+            type='password'
+            name='password'
+            placeholder='Your password...'
+            value={form.password}
+            error={error.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <Input
+            id='password_confirmation'
+            title='Password Confirmation'
+            type='password'
+            name='password_confirmation'
+            placeholder='Your password confirmation...'
+            value={form.password_confirmation}
+            error={error.password_confirmation}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <div>
+            <Button
+              isSubmit
+              isFluid
+              isLoading={isLoading}
+              disabled={isDisabled}
+              rightIcon={<Icon name='register' className='ml-2 h-5 w-5' />}
+            >
+              Register
+            </Button>
+          </div>
+          <div className='text-gray-600'>
+            <span>Have an account? </span>
+            <Link
+              to='/login'
+              className='text-blue-500 underline decoration-blue-500 underline-offset-4'
+            >
+              Go login
+            </Link>
+          </div>
+        </form>
+      </CardInput>
+    </MainContainer>
   )
 }
 

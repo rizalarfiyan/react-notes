@@ -16,13 +16,13 @@ function Button({
   const getVariant = useMemo(() => {
     switch (variant) {
       case 'danger':
-        return 'border-current bg-transparent text-red-600 hover:bg-red-50 focus:border-red-500 focus:ring-red-500 active:bg-red-100'
+        return 'border-current bg-transparent text-red-600 hover:bg-red-50 focus:bg-red-100'
       case 'warning':
-        return 'border-current bg-transparent text-yellow-600 hover:bg-yellow-50 focus:border-yellow-500 focus:ring-yellow-500 active:bg-yellow-100'
+        return 'border-current bg-transparent text-yellow-600 hover:bg-yellow-50 focus:bg-yellow-100'
       case 'success':
-        return 'border-current bg-transparent text-green-600 hover:bg-green-50 focus:border-green-500 focus:ring-green-500 active:bg-green-100'
+        return 'border-current bg-transparent text-green-600 hover:bg-green-50 focus:bg-green-100'
       default:
-        return 'border-current bg-transparent text-blue-600 hover:bg-blue-50 focus:border-blue-500 focus:ring-blue-500 active:bg-blue-100'
+        return 'border-current bg-transparent text-blue-600 hover:bg-blue-50 focus:bg-blue-100'
     }
   }, [variant])
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Button, CardInput, Icon, Input } from '../components'
+import { Button, CardInput, Icon, Input, MainContainer } from '../components'
 import { MAX_TITLE } from '../constants'
 import { editNote, getNote } from '../utils/local-data'
 import NotFound from './NotFound'
@@ -47,39 +47,41 @@ function EditNote() {
   }
 
   return (
-    <CardInput title='Edit a Note'>
-      <form className='w-full space-y-6' onSubmit={handleFormSubmit}>
-        <Input
-          id='title'
-          title='Title'
-          type='text'
-          name='title'
-          placeholder='Write your title...'
-          value={state.title}
-          limit={MAX_TITLE}
-          onChange={handleChange}
-        />
-        <Input
-          id='note'
-          as='textarea'
-          title='Note'
-          name='note'
-          rows={5}
-          placeholder='Write your note...'
-          value={state.note}
-          onChange={handleChange}
-        />
-        <div>
-          <Button
-            isSubmit
-            isFluid
-            rightIcon={<Icon name='edit' className='ml-2 h-5 w-5' />}
-          >
-            Edit
-          </Button>
-        </div>
-      </form>
-    </CardInput>
+    <MainContainer isCenter>
+      <CardInput title='Edit a Note'>
+        <form className='w-full space-y-6' onSubmit={handleFormSubmit}>
+          <Input
+            id='title'
+            title='Title'
+            type='text'
+            name='title'
+            placeholder='Write your title...'
+            value={state.title}
+            limit={MAX_TITLE}
+            onChange={handleChange}
+          />
+          <Input
+            id='note'
+            as='textarea'
+            title='Note'
+            name='note'
+            rows={5}
+            placeholder='Write your note...'
+            value={state.note}
+            onChange={handleChange}
+          />
+          <div>
+            <Button
+              isSubmit
+              isFluid
+              rightIcon={<Icon name='edit' className='ml-2 h-5 w-5' />}
+            >
+              Edit
+            </Button>
+          </div>
+        </form>
+      </CardInput>
+    </MainContainer>
   )
 }
 

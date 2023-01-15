@@ -1,6 +1,7 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { Navbar, Footer, Link, Icon } from './components'
+import { Navbar, Footer, Link, Icon, Button } from './components'
+import { useGlobalData } from './hooks/useGlobal'
 import {
   ListNote,
   CreateNote,
@@ -12,11 +13,19 @@ import {
 import Register from './pages/Register'
 
 function App() {
-  const ref = useRef(null)
+  const { isDarkMode, toggleMode } = useGlobalData()
+
   return (
     <>
       <Navbar>
         <div className='flex items-center justify-center gap-2'>
+          <Button
+            className='rounded-full bg-transparent !px-2 text-blue-500 hover:bg-blue-50 focus:bg-blue-100 active:bg-blue-50'
+            type='button'
+            onClick={toggleMode}
+          >
+            <Icon name={isDarkMode ? 'dark' : 'light'} className='h-5 w-5' />
+          </Button>
           <Link
             to='/'
             rightIcon={<Icon name='note' className='ml-2 h-5 w-5' />}
@@ -31,20 +40,15 @@ function App() {
           </Link>
         </div>
       </Navbar>
-      <main
-        ref={ref}
-        className='flex min-h-[calc(100vh-60px)] min-w-full flex-col justify-center gap-16 pt-32 xs:pt-28'
-      >
-        <Routes>
-          <Route path='/' element={<ListNote parentRef={ref} />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/create' element={<CreateNote />} />
-          <Route path='/note/:id' element={<DetailNote parentRef={ref} />} />
-          <Route path='/note/edit/:id' element={<EditNote />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-      </main>
+      <Routes>
+        <Route path='/' element={<ListNote />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/create' element={<CreateNote />} />
+        <Route path='/note/:id' element={<DetailNote />} />
+        <Route path='/note/edit/:id' element={<EditNote />} />
+        <Route path='*' element={<NotFound />} />
+      </Routes>
       <Footer />
     </>
   )

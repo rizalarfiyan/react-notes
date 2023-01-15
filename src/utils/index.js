@@ -1,4 +1,8 @@
-import { DEFAULT_FILTER_SLUG, FILTER_NOTE_TYPE } from '../constants'
+import {
+  DEFAULT_FILTER_SLUG,
+  FILTER_NOTE_TYPE,
+  STORAGE_KEY,
+} from '../constants'
 
 const showFormattedDate = (date) => {
   const options = {
@@ -27,4 +31,24 @@ const getFilterNoteType = (slug) => {
   return FILTER_NOTE_TYPE.find((val) => val.slug === DEFAULT_FILTER_SLUG)
 }
 
-export { showFormattedDate, getYear, classNames, getFilterNoteType }
+const hasLocalStorage = typeof Storage !== 'undefined'
+
+const getDarkMode = () => {
+  const getGlobalTheme = window.matchMedia(
+    '(prefers-color-scheme: dark)'
+  ).matches
+  if (!hasLocalStorage) return getGlobalTheme
+  return (
+    localStorage[STORAGE_KEY.theme] === 'dark' ||
+    (!(STORAGE_KEY.theme in localStorage) && getGlobalTheme)
+  )
+}
+
+export {
+  showFormattedDate,
+  getYear,
+  classNames,
+  getFilterNoteType,
+  hasLocalStorage,
+  getDarkMode,
+}

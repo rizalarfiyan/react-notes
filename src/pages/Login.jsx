@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Button, CardInput, Icon, Input } from '../components'
+import { Button, CardInput, Icon, Input, MainContainer } from '../components'
 import { useForm, useNotification } from '../hooks'
 import { login } from '../utils/network-data'
 
@@ -62,52 +62,54 @@ function Login() {
   }
 
   return (
-    <CardInput title='Login'>
-      <form className='w-full space-y-6' onSubmit={handleFormSubmit}>
-        <Input
-          id='email'
-          title='Email'
-          type='email'
-          name='email'
-          placeholder='Your email...'
-          value={form.email}
-          error={error.email}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        <Input
-          id='password'
-          title='Password'
-          type='password'
-          name='password'
-          placeholder='Your password...'
-          value={form.password}
-          error={error.password}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        <div>
-          <Button
-            isSubmit
-            isFluid
-            isLoading={isLoading}
-            disabled={isDisabled}
-            rightIcon={<Icon name='login' className='ml-2 h-5 w-5' />}
-          >
-            Login
-          </Button>
-        </div>
-        <div className='text-gray-600'>
-          <span>No account? </span>
-          <Link
-            to='/register'
-            className='text-blue-500 underline decoration-blue-500 underline-offset-4'
-          >
-            Create One
-          </Link>
-        </div>
-      </form>
-    </CardInput>
+    <MainContainer isCenter>
+      <CardInput title='Login'>
+        <form className='w-full space-y-6' onSubmit={handleFormSubmit}>
+          <Input
+            id='email'
+            title='Email'
+            type='email'
+            name='email'
+            placeholder='Your email...'
+            value={form.email}
+            error={error.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <Input
+            id='password'
+            title='Password'
+            type='password'
+            name='password'
+            placeholder='Your password...'
+            value={form.password}
+            error={error.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <div>
+            <Button
+              isSubmit
+              isFluid
+              isLoading={isLoading}
+              disabled={isDisabled}
+              rightIcon={<Icon name='login' className='ml-2 h-5 w-5' />}
+            >
+              Login
+            </Button>
+          </div>
+          <div className='text-gray-600'>
+            <span>No account? </span>
+            <Link
+              to='/register'
+              className='text-blue-500 underline decoration-blue-500 underline-offset-4'
+            >
+              Create One
+            </Link>
+          </div>
+        </form>
+      </CardInput>
+    </MainContainer>
   )
 }
 
