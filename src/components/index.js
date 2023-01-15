@@ -14,6 +14,7 @@ import Spinner from './Spinner'
 import Notification from './Notification'
 import MainContainer from './MainContainer'
 import GuardedRoute from './GuardedRoute'
+import UserDropdown from './UserDropdown'
 
 export {
   Footer,
@@ -32,4 +33,5 @@ export {
   Notification,
   MainContainer,
   GuardedRoute,
+  UserDropdown,
 }

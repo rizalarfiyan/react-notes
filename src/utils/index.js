@@ -1,3 +1,4 @@
+import md5 from 'blueimp-md5'
 import {
   DEFAULT_FILTER_SLUG,
   FILTER_NOTE_TYPE,
@@ -44,6 +45,20 @@ const getDarkMode = () => {
   )
 }
 
+const gravatarUrl = (
+  email,
+  size,
+  defaultImage = 'mm',
+  allowedRating = 'g',
+  isForceDefault = true
+) => {
+  const newEmail = md5(email?.toLowerCase()?.trim() || '').toString()
+  const newSize = size >= 1 && size <= 2048 ? size : 80
+  const newDefaultImage = encodeURIComponent(defaultImage)
+  const forceDefault = isForceDefault ? '&forcedefault=y' : 'n'
+  return `https://secure.gravatar.com/avatar/${newEmail}?size=${newSize}&default=${newDefaultImage}&rating=${allowedRating}${forceDefault}`
+}
+
 export {
   showFormattedDate,
   getYear,
@@ -51,4 +66,5 @@ export {
   getFilterNoteType,
   hasLocalStorage,
   getDarkMode,
+  gravatarUrl,
 }

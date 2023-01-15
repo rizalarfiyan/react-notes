@@ -52,8 +52,17 @@ function GlobalProvider({ children }) {
     })
   }
 
+  const darkModeElement = () => {
+    if (isDarkMode) {
+      document.documentElement.dataset.mode = MODE.dark
+    } else {
+      document.documentElement.dataset.mode = MODE.light
+    }
+  }
+
   useEffect(() => {
     setAppInfo((prev) => ({ ...prev, message: 'Fetching data...' }))
+    darkModeElement()
     fetchUser()
   }, [])
 
@@ -62,11 +71,7 @@ function GlobalProvider({ children }) {
       isDarkMode,
       toggleMode: () => {
         setIsDarkMode((prev) => !prev)
-        if (isDarkMode) {
-          document.documentElement.dataset.mode = MODE.dark
-        } else {
-          document.documentElement.dataset.mode = MODE.light
-        }
+        darkModeElement()
         if (hasLocalStorage) {
           localStorage.setItem(
             STORAGE_KEY.theme,

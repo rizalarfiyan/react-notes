@@ -1,7 +1,15 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { Navbar, Footer, Link, Icon, Button, GuardedRoute } from './components'
-import { useGlobalData } from './hooks/useGlobal'
+import {
+  Navbar,
+  Footer,
+  Link,
+  Icon,
+  Button,
+  GuardedRoute,
+  UserDropdown,
+} from './components'
+import { useGlobalData } from './hooks'
 import {
   ListNote,
   CreateNote,
@@ -40,6 +48,7 @@ function App() {
               >
                 Create
               </Link>
+              <UserDropdown />
             </>
           )}
         </div>
