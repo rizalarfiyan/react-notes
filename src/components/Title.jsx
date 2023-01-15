@@ -1,12 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { APP_NAME } from '../constants'
+import { useGlobalData } from '../hooks'
 
 function Title() {
+  const { auth } = useGlobalData()
   return (
-    <Link to='.'>
-      <h1 className='text-2xl font-semibold text-gray-700'>{APP_NAME}</h1>
-    </Link>
+    <h1 className='text-2xl font-semibold text-gray-700'>
+      {auth ? <Link to='/'>{APP_NAME}</Link> : APP_NAME}
+    </h1>
   )
 }
 

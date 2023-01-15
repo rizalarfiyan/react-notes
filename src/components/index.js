@@ -13,6 +13,7 @@ import Link from './Link'
 import Spinner from './Spinner'
 import Notification from './Notification'
 import MainContainer from './MainContainer'
+import GuardedRoute from './GuardedRoute'
 
 export {
   Footer,
@@ -30,4 +31,5 @@ export {
   Spinner,
   Notification,
   MainContainer,
+  GuardedRoute,
 }

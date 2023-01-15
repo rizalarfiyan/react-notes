@@ -1,11 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Button, CardInput, Icon, Input, MainContainer } from '../components'
-import { useForm, useNotification } from '../hooks'
-import { login } from '../utils/network-data'
+import { useForm, useGlobalData, useNotification } from '../hooks'
+import { login, putAccessToken } from '../utils/network-data'
 
 function Login() {
+  const { getUser } = useGlobalData()
   const notification = useNotification()
+  const navigate = useNavigate()
   const intialData = {
     email: '',
     password: '',
@@ -56,7 +58,10 @@ function Login() {
     if (loginData.error) {
       notification.error(loginData.message)
     } else {
+      putAccessToken(loginData.data.accessToken)
+      await getUser()
       notification.success(loginData.message)
+      navigate('/')
     }
     setLoading(false)
   }
