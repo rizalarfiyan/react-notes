@@ -23,7 +23,7 @@ const notificationReducer = (state, action) => {
       return [
         ...state,
         {
-          id: +new Date(),
+          id: (+new Date()).toString(),
           content: {
             message: action.payload.content.message || '',
             duration:

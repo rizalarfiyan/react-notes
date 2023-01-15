@@ -92,7 +92,7 @@ NotificationMessage.propTypes = {
   id: PropTypes.string.isRequired,
   message: PropTypes.string,
   type: PropTypes.string,
-  duration: PropTypes.string,
+  duration: PropTypes.number,
   onRemove: PropTypes.func.isRequired,
 }
 

@@ -47,7 +47,7 @@ function NotificationWrapper({ position, data }) {
               className='pointer-events-auto flex w-full transform py-1 transition-all duration-300'
             >
               <NotificationMessage
-                id={val.id}
+                id={val.id.toString()}
                 message={val.content.message}
                 type={val.type}
                 duration={val.content.duration}
