@@ -51,10 +51,10 @@ function NoteCard({ data, onDelete, onToggleArchive, triggerFetchData }) {
       <p className='text-gray-700'>{data.body}</p>
       <div className='mt-6 flex items-center justify-center gap-3'>
         <Link
-          to={`/note/edit/${data.id}`}
-          rightIcon={<Icon name='edit' className='ml-2 h-5 w-5' />}
+          to={`/note/${data.id}`}
+          rightIcon={<Icon name='view' className='ml-2 h-5 w-5' />}
         >
-          Edit
+          View
         </Link>
         <Button
           type='button'

@@ -32,7 +32,7 @@ function SkeletonDetailNote() {
         </div>
       </div>
       <div className='mt-4 flex items-center justify-end gap-3'>
-        {Array.from({ length: 3 }).map((val, idx) => {
+        {Array.from({ length: 2 }).map((val, idx) => {
           return (
             <div
               key={idx}

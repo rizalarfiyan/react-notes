@@ -10,14 +10,7 @@ import {
   UserDropdown,
 } from './components'
 import { useGlobalData } from './hooks'
-import {
-  ListNote,
-  CreateNote,
-  NotFound,
-  DetailNote,
-  EditNote,
-  Login,
-} from './pages'
+import { ListNote, CreateNote, NotFound, DetailNote, Login } from './pages'
 import Register from './pages/Register'
 
 function App() {
@@ -58,7 +51,6 @@ function App() {
           <Route path='/' element={<ListNote />} />
           <Route path='/create' element={<CreateNote />} />
           <Route path='/note/:id' element={<DetailNote />} />
-          <Route path='/note/edit/:id' element={<EditNote />} />
         </Route>
         <Route element={<GuardedRoute redirectAuth />}>
           <Route path='/login' element={<Login />} />

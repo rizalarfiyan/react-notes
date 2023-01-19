@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-// import NotFound from './NotFound'
 import { Button, Icon, Link, MainContainer, Skeleton } from '../components'
 import {
   deleteNote,
@@ -109,12 +108,6 @@ function DetailNote() {
           </div>
         </div>
         <div className='mt-4 flex items-center justify-end gap-2'>
-          <Link
-            to={`/note/edit/${note.id}`}
-            rightIcon={<Icon name='edit' className='ml-2 h-5 w-5' />}
-          >
-            Edit
-          </Link>
           <Button
             type='button'
             rightIcon={
