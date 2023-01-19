@@ -1,29 +1,27 @@
+import { getActiveNotes, getArchivedNotes } from '../utils'
+
 const APP_NAME = 'React Notes'
 const API_BASE_URL = 'https://notes-api.dicoding.dev/v1'
 const MAX_TITLE = 50
 
-const DEFAULT_FILTER_SLUG = 'all'
+const DEFAULT_FILTER_SLUG = 'active'
 const DEFAULT_DURATION_NOTIFICATION = 3000
 
 const FILTER_NOTE_TYPE = [
   {
-    name: 'All',
-    slug: 'all',
-  },
-  {
     name: 'Active',
     slug: 'active',
-    filter: {
-      key: 'archived',
-      value: false,
+    callback: async () => {
+      const data = await getActiveNotes()
+      return data
     },
   },
   {
     name: 'Archived',
     slug: 'archived',
-    filter: {
-      key: 'archived',
-      value: true,
+    callback: async () => {
+      const data = await getArchivedNotes()
+      return data
     },
   },
 ]

@@ -1,12 +1,13 @@
 import { useState } from 'react'
 
 const useForm = (initialState = {}, callbackValidation = undefined) => {
-  const [state, setState] = useState({
+  const emptyState = {
     form: { ...initialState },
     error: { ...initialState },
     isDisabled: true,
     isLoading: false,
-  })
+  }
+  const [state, setState] = useState(emptyState)
 
   const setLoading = (isLoading) => setState((prev) => ({ ...prev, isLoading }))
   const setDisable = (isDisabled) =>
@@ -54,10 +55,15 @@ const useForm = (initialState = {}, callbackValidation = undefined) => {
     validation(name, value)
     event.preventDefault()
   }
+
   const handleBlur = (event) => {
     const { name, value } = event.target
     validation(name, value)
     event.preventDefault()
+  }
+
+  const setClear = () => {
+    setState(emptyState)
   }
 
   return {
@@ -68,6 +74,7 @@ const useForm = (initialState = {}, callbackValidation = undefined) => {
     error: state.error,
     isDisabled: state.isDisabled,
     isLoading: state.isLoading,
+    clear: setClear,
   }
 }
 

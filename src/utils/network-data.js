@@ -1,18 +1,16 @@
 import { API_BASE_URL, STORAGE_KEY } from '../constants'
 
-function getAccessToken() {
+const getAccessToken = () => {
   return localStorage.getItem(STORAGE_KEY.accessToken)
 }
-
-function putAccessToken(accessToken) {
+const putAccessToken = (accessToken) => {
   return localStorage.setItem(STORAGE_KEY.accessToken, accessToken)
 }
-
-function removeAccessToken() {
+const removeAccessToken = () => {
   return localStorage.removeItem(STORAGE_KEY.accessToken)
 }
 
-async function fetchWithToken(url, options = {}) {
+const fetchWithToken = async (url, options = {}) => {
   return fetch(url, {
     ...options,
     headers: {
@@ -22,7 +20,7 @@ async function fetchWithToken(url, options = {}) {
   })
 }
 
-async function login({ email, password }) {
+const login = async ({ email, password }) => {
   const response = await fetch(`${API_BASE_URL}/login`, {
     method: 'POST',
     headers: {
@@ -44,7 +42,7 @@ async function login({ email, password }) {
   }
 }
 
-async function register({ name, email, password }) {
+const register = async ({ name, email, password }) => {
   const response = await fetch(`${API_BASE_URL}/register`, {
     method: 'POST',
     headers: {
@@ -62,7 +60,7 @@ async function register({ name, email, password }) {
   return { error: false, message: responseJson.message }
 }
 
-async function getUserLogged() {
+const getUserLogged = async () => {
   const response = await fetchWithToken(`${API_BASE_URL}/users/me`)
   const responseJson = await response.json()
 
@@ -77,7 +75,7 @@ async function getUserLogged() {
   }
 }
 
-async function addNote({ title, body }) {
+const addNote = async ({ title, body }) => {
   const response = await fetchWithToken(`${API_BASE_URL}/notes`, {
     method: 'POST',
     headers: {
@@ -99,7 +97,7 @@ async function addNote({ title, body }) {
   }
 }
 
-async function getActiveNotes() {
+const getActiveNotes = async () => {
   const response = await fetchWithToken(`${API_BASE_URL}/notes`)
   const responseJson = await response.json()
 
@@ -114,7 +112,7 @@ async function getActiveNotes() {
   }
 }
 
-async function getArchivedNotes() {
+const getArchivedNotes = async () => {
   const response = await fetchWithToken(`${API_BASE_URL}/notes/archived`)
   const responseJson = await response.json()
 
@@ -129,7 +127,7 @@ async function getArchivedNotes() {
   }
 }
 
-async function getNote(id) {
+const getNote = async (id) => {
   const response = await fetchWithToken(`${API_BASE_URL}/notes/${id}`)
   const responseJson = await response.json()
 
@@ -144,7 +142,7 @@ async function getNote(id) {
   }
 }
 
-async function archiveNote(id) {
+const archiveNote = async (id) => {
   const response = await fetchWithToken(`${API_BASE_URL}/notes/${id}/archive`, {
     method: 'POST',
   })
@@ -162,7 +160,7 @@ async function archiveNote(id) {
   }
 }
 
-async function unarchiveNote(id) {
+const unarchiveNote = async (id) => {
   const response = await fetchWithToken(
     `${API_BASE_URL}/notes/${id}/unarchive`,
     {
@@ -183,7 +181,16 @@ async function unarchiveNote(id) {
   }
 }
 
-async function deleteNote(id) {
+const toggleArchiveNote = async (id, isArchive) => {
+  if (isArchive) {
+    const res = await unarchiveNote(id)
+    return res
+  }
+  const res = await archiveNote(id)
+  return res
+}
+
+const deleteNote = async (id) => {
   const response = await fetchWithToken(`${API_BASE_URL}/notes/${id}`, {
     method: 'DELETE',
   })
@@ -214,5 +221,6 @@ export {
   getNote,
   archiveNote,
   unarchiveNote,
+  toggleArchiveNote,
   deleteNote,
 }

@@ -30,12 +30,12 @@ function Alert({ message, variant }) {
 }
 
 Alert.defaultProps = {
-  variant: 'primary',
+  variant: 'info',
 }
 
 Alert.propTypes = {
   message: PropTypes.string.isRequired,
-  variant: PropTypes.string,
+  variant: PropTypes.oneOf(['danger', 'warning', 'success', 'info']),
 }
 
 export default Alert

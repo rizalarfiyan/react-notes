@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, CardInput, Icon, Input, MainContainer } from '../components'
 import { useForm, useGlobalData, useNotification } from '../hooks'
-import { login, putAccessToken } from '../utils/network-data'
+import { login, putAccessToken } from '../utils'
 
 function Login() {
   const { getUser } = useGlobalData()

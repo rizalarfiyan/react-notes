@@ -64,19 +64,23 @@ function Input({
         value={value}
         {...rest}
       />
-      {hasLimit && (
-        <p
-          className={classNames(
-            'mt-1 text-right text-sm',
-            isLimit ? 'text-red-500' : 'text-gray-600'
-          )}
-        >
-          {length}/{limit}
-        </p>
-      )}
-      {hasError && (
-        <p className='mt-1 text-left text-sm text-red-500'>{error}</p>
-      )}
+      <div className='flex items-start justify-between'>
+        {hasError ? (
+          <p className='mt-1 text-left text-sm text-red-500'>{error}</p>
+        ) : (
+          <p />
+        )}
+        {hasLimit && (
+          <p
+            className={classNames(
+              'mt-1 text-right text-sm',
+              isLimit ? 'text-red-500' : 'text-gray-600'
+            )}
+          >
+            {length}/{limit}
+          </p>
+        )}
+      </div>
     </div>
   )
 }

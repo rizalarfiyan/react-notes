@@ -1,18 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link as LinkDom } from 'react-router-dom'
 import { showFormattedDate } from '../utils'
 import Button from './Button'
 import Link from './Link'
 import Icon from './Icon'
+import { useNotification } from '../hooks'
 
-function NoteCard({ data, onDelete, onToggleArchive }) {
-  const handleDelete = () => {
-    onDelete(data.id)
+function NoteCard({ data, onDelete, onToggleArchive, triggerFetchData }) {
+  const [isLoading, setIsLoading] = useState({
+    delete: false,
+    toggle: false,
+  })
+  const notification = useNotification()
+
+  const handleDelete = async () => {
+    setIsLoading((prev) => ({ ...prev, delete: true }))
+    const res = await onDelete(data.id)
+    setIsLoading((prev) => ({ ...prev, delete: false }))
+    if (res.error) {
+      notification.error(res.message)
+      return
+    }
+    notification.success(res.message)
+    await triggerFetchData()
   }
 
-  const handleToggleArchive = () => {
-    onToggleArchive(data.id)
+  const handleToggleArchive = async () => {
+    setIsLoading((prev) => ({ ...prev, toggle: true }))
+    const res = await onToggleArchive(data.id, data.archived)
+    setIsLoading((prev) => ({ ...prev, toggle: false }))
+    if (res.error) {
+      notification.error(res.message)
+      return
+    }
+    notification.success(res.message)
+    await triggerFetchData()
   }
 
   return (
@@ -41,6 +64,7 @@ function NoteCard({ data, onDelete, onToggleArchive }) {
               className='ml-2 h-5 w-5'
             />
           }
+          isLoading={isLoading.toggle}
           onClick={handleToggleArchive}
         >
           {data.archived ? 'Active' : 'Archive'}
@@ -48,6 +72,7 @@ function NoteCard({ data, onDelete, onToggleArchive }) {
         <Button
           rightIcon={<Icon name='trash' className='ml-2 h-5 w-5' />}
           variant='danger'
+          isLoading={isLoading.delete}
           onClick={handleDelete}
         >
           Delete
@@ -67,6 +92,7 @@ NoteCard.propTypes = {
   }).isRequired,
   onDelete: PropTypes.func.isRequired,
   onToggleArchive: PropTypes.func.isRequired,
+  triggerFetchData: PropTypes.func.isRequired,
 }
 
 export default NoteCard

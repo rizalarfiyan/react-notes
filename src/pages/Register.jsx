@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button, CardInput, Icon, Input, MainContainer } from '../components'
 import { useForm, useNotification } from '../hooks'
-import { register } from '../utils/network-data'
+import { register } from '../utils'
 
 function Register() {
   const notification = useNotification()

@@ -15,6 +15,7 @@ import Notification from './Notification'
 import MainContainer from './MainContainer'
 import GuardedRoute from './GuardedRoute'
 import UserDropdown from './UserDropdown'
+import Skeleton from './Skeleton'
 
 export {
   Footer,
@@ -34,4 +35,5 @@ export {
   MainContainer,
   GuardedRoute,
   UserDropdown,
+  Skeleton,
 }

@@ -1,36 +1,84 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { deleteNote, getNote, toggleArchiveNote } from '../utils/local-data'
-import NotFound from './NotFound'
-import { Button, Icon, Link, MainContainer } from '../components'
-import { showFormattedDate } from '../utils'
+// import NotFound from './NotFound'
+import { Button, Icon, Link, MainContainer, Skeleton } from '../components'
+import {
+  deleteNote,
+  getNote,
+  showFormattedDate,
+  toggleArchiveNote,
+} from '../utils'
+import { useNotification } from '../hooks'
 
 function DetailNote() {
-  const [note, setNote] = useState(undefined)
+  const [note, setNote] = useState({
+    id: '',
+    title: '',
+    body: '',
+    createdAt: '',
+    archived: false,
+    owner: '',
+  })
   const { id } = useParams()
   const navigate = useNavigate()
+  const notification = useNotification()
+  const [isLoading, setIsLoading] = useState({
+    global: false,
+    delete: false,
+    toggle: false,
+  })
 
-  useEffect(() => {
-    const noteData = getNote(id)
-    setNote(noteData)
-  }, [])
-
-  if (!note) {
-    return <NotFound />
+  const fetchData = async () => {
+    if (!id) return
+    setIsLoading((prev) => ({ ...prev, global: true }))
+    const data = await getNote(id)
+    setIsLoading((prev) => ({ ...prev, global: false }))
+    if (data.error) {
+      notification.error(data.message)
+      navigate('/')
+      return
+    }
+    setNote(data.data)
   }
 
-  const handleDelete = () => {
-    deleteNote(note.id)
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  const handleDelete = async () => {
+    setIsLoading((prev) => ({ ...prev, delete: true }))
+    const res = await deleteNote(id)
+    setIsLoading((prev) => ({ ...prev, delete: false }))
+    if (res.error) {
+      notification.error(res.message)
+      return
+    }
+    notification.success(res.message)
     navigate('/')
   }
 
-  const handleToggleArchive = () => {
-    toggleArchiveNote(note.id)
-    setNote(getNote(note.id))
+  const handleToggleArchive = async () => {
+    setIsLoading((prev) => ({ ...prev, toggle: true }))
+    const res = await toggleArchiveNote(id, note.archived)
+    setIsLoading((prev) => ({ ...prev, toggle: false }))
+    if (res.error) {
+      notification.error(res.message)
+      return
+    }
+    notification.success(res.message)
+    await fetchData()
+  }
+
+  if (isLoading.global) {
+    return (
+      <MainContainer>
+        <Skeleton.SkeletonDetailNote />
+      </MainContainer>
+    )
   }
 
   return (
-    <MainContainer isCenter>
+    <MainContainer>
       <div className='container'>
         <div className='relative h-full w-full rounded-md bg-white p-8 shadow-sm'>
           <div className='text-center'>
@@ -75,6 +123,7 @@ function DetailNote() {
                 className='ml-2 h-5 w-5'
               />
             }
+            isLoading={isLoading.toggle}
             onClick={handleToggleArchive}
           >
             {note.archived ? 'Active' : 'Archive'}
@@ -82,6 +131,7 @@ function DetailNote() {
           <Button
             rightIcon={<Icon name='trash' className='ml-2 h-5 w-5' />}
             variant='danger'
+            isLoading={isLoading.delete}
             onClick={handleDelete}
           >
             Delete
