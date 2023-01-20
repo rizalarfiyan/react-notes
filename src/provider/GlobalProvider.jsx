@@ -9,6 +9,7 @@ import {
   getUserLogged,
   removeAccessToken,
 } from '../utils/network-data'
+import { LoadingScreen } from '../components'
 
 function GlobalProvider({ children }) {
   const isInitialDark = getDarkMode() || false
@@ -118,7 +119,7 @@ function GlobalProvider({ children }) {
     )
   }
 
-  return <div>{appInfo.message}</div>
+  return <LoadingScreen reason={appInfo.message} />
 }
 
 GlobalProvider.propTypes = {

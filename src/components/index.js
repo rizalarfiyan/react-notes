@@ -17,6 +17,7 @@ import GuardedRoute from './GuardedRoute'
 import UserDropdown from './UserDropdown'
 import Dropdown from './Dropdown'
 import Skeleton from './Skeleton'
+import LoadingScreen from './LoadingScreen'
 
 export {
   Footer,
@@ -38,4 +39,5 @@ export {
   Dropdown,
   UserDropdown,
   Skeleton,
+  LoadingScreen,
 }
