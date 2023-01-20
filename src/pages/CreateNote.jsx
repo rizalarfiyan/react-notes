@@ -2,10 +2,11 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, CardInput, Icon, Input, MainContainer } from '../components'
 import { MAX_TITLE } from '../constants'
-import { useForm, useNotification } from '../hooks'
+import { useForm, useGlobalData, useNotification } from '../hooks'
 import { addNote } from '../utils'
 
 function CreateNote() {
+  const { getLang } = useGlobalData()
   const notification = useNotification()
   const navigate = useNavigate()
   const intialData = {
@@ -17,14 +18,14 @@ function CreateNote() {
     switch (key) {
       case 'title':
         if (value === '') {
-          setError('title', 'Title is required')
+          setError('title', getLang('input.validation.title.required'))
           break
         }
         clearError('title')
         break
       case 'note':
         if (value === '') {
-          setError('note', 'Note is required')
+          setError('note', getLang('input.validation.note.required'))
           break
         }
         clearError('note')
@@ -62,14 +63,14 @@ function CreateNote() {
 
   return (
     <MainContainer isCenter>
-      <CardInput title='Create a Note'>
+      <CardInput title={getLang('title.create')}>
         <form className='w-full space-y-6' onSubmit={handleFormSubmit}>
           <Input
             id='title'
-            title='Title'
+            title={getLang('input.label.title')}
             type='text'
             name='title'
-            placeholder='Write your title...'
+            placeholder={getLang('input.placeholder.title')}
             value={form.title}
             error={error.title}
             limit={MAX_TITLE}
@@ -79,10 +80,10 @@ function CreateNote() {
           <Input
             id='note'
             as='textarea'
-            title='Note'
+            title={getLang('input.label.note')}
             name='note'
             rows={5}
-            placeholder='Write your note...'
+            placeholder={getLang('input.placeholder.note')}
             value={form.note}
             error={error.note}
             onChange={handleChange}
@@ -96,7 +97,7 @@ function CreateNote() {
               disabled={isDisabled}
               rightIcon={<Icon name='add' className='ml-2 h-5 w-5' />}
             >
-              Create
+              {getLang('action.create')}
             </Button>
           </div>
         </form>

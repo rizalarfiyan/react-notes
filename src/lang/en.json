@@ -1,0 +1,73 @@
+{
+  "note": {
+    "type": {
+      "active": "Active",
+      "archived": "Archived"
+    }
+  },
+  "input": {
+    "placeholder": {
+      "search": "Search...",
+      "title": "Write your title...",
+      "note": "Write your note...",
+      "name": "Write your name...",
+      "email": "Write your email...",
+      "password": "Write your password...",
+      "password_confirmation": "Write your password confirmation..."
+    },
+    "label": {
+      "title": "Title",
+      "note": "Note",
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "password_confirmation": "Password Confirmation"
+    },
+    "validation": {
+      "title": {
+        "required": "Title is required"
+      },
+      "note": {
+        "required": "Note is required"
+      },
+      "name": {
+        "required": "Name is required",
+        "valid": "Please enter a valid name"
+      },
+      "email": {
+        "required": "Email is required",
+        "valid": "Please enter a valid email address"
+      },
+      "password": {
+        "required": "Password is required"
+      },
+      "password_confirmation": {
+        "required": "Password Confirmation is required",
+        "no-match": "Password Confirmation does not match"
+      }
+    }
+  },
+  "title": {
+    "note": "Notes",
+    "base": "My Notes",
+    "search": "Search a Note",
+    "filter": "Filter Note",
+    "not-found": "Note {0} not found!",
+    "create": "Create a Note",
+    "login": "Login",
+    "no-account": "No account? ",
+    "create-account": "Create One",
+    "register": "Create an Account",
+    "have-account": "Have an account? ",
+    "go-login": "Go login"
+  },
+  "action": {
+    "view": "View",
+    "delete": "Delete",
+    "create": "Create",
+    "logout": "Logout",
+    "back": "Back",
+    "login": "Login",
+    "register": "Register"
+  }
+}

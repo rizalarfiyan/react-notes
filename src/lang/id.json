@@ -1,0 +1,73 @@
+{
+  "note": {
+    "type": {
+      "active": "Aktif",
+      "archived": "Terarsip"
+    }
+  },
+  "input": {
+    "placeholder": {
+      "search": "Cari...",
+      "title": "Tulis judul...",
+      "note": "Tulis catata...",
+      "name": "Tulis nama...",
+      "email": "Tulis surel...",
+      "password": "Tulis kata sandi...",
+      "password_confirmation": "Tulis konfirmasi kata sandi..."
+    },
+    "label": {
+      "title": "Judul",
+      "note": "Catatan",
+      "name": "Nama",
+      "email": "Surel",
+      "password": "Kata Sandi",
+      "password_confirmation": "Konfirmasi Kata Sandi"
+    },
+    "validation": {
+      "title": {
+        "required": "Judul wajib diisi"
+      },
+      "note": {
+        "required": "Catatan wajib diisi"
+      },
+      "name": {
+        "required": "Nama wajib diisi",
+        "valid": "Harus berupa nama yang valid"
+      },
+      "email": {
+        "required": "Surel wajib diisi",
+        "valid": "Harus berupa alamat surel yang valid."
+      },
+      "password": {
+        "required": "Kata Sandi wajib diisi"
+      },
+      "password_confirmation": {
+        "required": "Konfirmasi Kata Sandi wajib diisi",
+        "no-match": "Konfirmasi Kata Sandi tidak cocok"
+      }
+    }
+  },
+  "title": {
+    "note": "Catatan",
+    "base": "Catatan Saya",
+    "search": "Cari Catatan",
+    "filter": "Filter Catatan",
+    "not-found": "Catatan {0} tidak ditemukan!",
+    "create": "Buat Catatan Baru",
+    "login": "Masuk",
+    "no-account": "Tidak ada akun? ",
+    "create-account": "Buat baru",
+    "register": "Buat akun baru",
+    "have-account": "Punya akun? ",
+    "go-login": "Kembali masuk"
+  },
+  "action": {
+    "view": "Lihat",
+    "delete": "Hapus",
+    "create": "Buat",
+    "logout": "Keluar",
+    "back": "Kembali",
+    "login": "Masuk",
+    "register": "Daftar"
+  }
+}

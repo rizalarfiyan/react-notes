@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useGlobalData } from './useGlobal'
 
 const useForm = (initialState = {}, callbackValidation = undefined) => {
   const emptyState = {
@@ -7,6 +8,8 @@ const useForm = (initialState = {}, callbackValidation = undefined) => {
     isDisabled: true,
     isLoading: false,
   }
+  const { lang } = useGlobalData()
+  const isMounted = useRef(false)
   const [state, setState] = useState(emptyState)
 
   const setLoading = (isLoading) => setState((prev) => ({ ...prev, isLoading }))
@@ -66,6 +69,21 @@ const useForm = (initialState = {}, callbackValidation = undefined) => {
     setState(emptyState)
   }
 
+  const triggerValidation = () => {
+    Object.keys(state.form).forEach((key) => {
+      const value = state.form[key]
+      validation(key, value)
+    })
+  }
+
+  useEffect(() => {
+    if (isMounted.current) {
+      triggerValidation()
+    } else {
+      isMounted.current = true
+    }
+  }, [lang])
+
   return {
     handleChange,
     handleBlur,
@@ -75,6 +93,7 @@ const useForm = (initialState = {}, callbackValidation = undefined) => {
     isDisabled: state.isDisabled,
     isLoading: state.isLoading,
     clear: setClear,
+    triggerValidation,
   }
 }
 

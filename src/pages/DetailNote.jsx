@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Button, Icon, Link, MainContainer, Skeleton } from '../components'
 import {
@@ -7,9 +7,10 @@ import {
   showFormattedDate,
   toggleArchiveNote,
 } from '../utils'
-import { useNotification } from '../hooks'
+import { useGlobalData, useNotification } from '../hooks'
 
 function DetailNote() {
+  const { getLang, lang } = useGlobalData()
   const [note, setNote] = useState({
     id: '',
     title: '',
@@ -68,6 +69,10 @@ function DetailNote() {
     await fetchData()
   }
 
+  const formatDate = useMemo(() => {
+    return showFormattedDate(note.createdAt, lang.dateLocale)
+  }, [lang])
+
   if (isLoading.global) {
     return (
       <MainContainer>
@@ -87,11 +92,15 @@ function DetailNote() {
             <div className='mb-6 flex items-center justify-center gap-6'>
               <div className='flex items-center gap-2 text-gray-600'>
                 <Icon className='h-5 w-5' name='calendar' />
-                <span>{showFormattedDate(note.createdAt)}</span>
+                <span>{formatDate}</span>
               </div>
               <div className='flex items-center gap-2 text-gray-600'>
                 <Icon className='h-6 w-6' name='label' />
-                <span>{note.archived ? 'Archive' : 'Active'}</span>
+                <span>
+                  {note.archived
+                    ? getLang('note.type.archived')
+                    : getLang('note.type.active')}
+                </span>
               </div>
             </div>
           </div>
@@ -103,7 +112,7 @@ function DetailNote() {
               leftIcon={<Icon className='mr-1 h-6 w-6' name='right' />}
               className='pl-1.5 pr-2.5'
             >
-              Back
+              {getLang('action.back')}
             </Link>
           </div>
         </div>
@@ -119,7 +128,9 @@ function DetailNote() {
             isLoading={isLoading.toggle}
             onClick={handleToggleArchive}
           >
-            {note.archived ? 'Active' : 'Archive'}
+            {note.archived
+              ? getLang('note.type.active')
+              : getLang('note.type.archived')}
           </Button>
           <Button
             rightIcon={<Icon name='trash' className='ml-2 h-5 w-5' />}
@@ -127,7 +138,7 @@ function DetailNote() {
             isLoading={isLoading.delete}
             onClick={handleDelete}
           >
-            Delete
+            {getLang('action.delete')}
           </Button>
         </div>
       </div>

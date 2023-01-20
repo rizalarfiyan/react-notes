@@ -5,12 +5,15 @@ import NoteCard from './NoteCard'
 import { classNames, deleteNote, toggleArchiveNote } from '../utils'
 import Alert from './Alert'
 import Skeleton from './Skeleton'
+import Dropdown from './Dropdown'
+import { useGlobalData } from '../hooks'
 
 function Notes({ filter, onFilter }) {
   const defaultType = FILTER_NOTE_TYPE.find(
     (val) => val.slug === DEFAULT_FILTER_SLUG
   )
 
+  const { getLang } = useGlobalData()
   const [typeNote, setTypeNote] = useState(defaultType)
   const [rawNotes, setRawNotes] = useState([])
   const [fetchStatus, setFetchStatus] = useState({
@@ -86,8 +89,8 @@ function Notes({ filter, onFilter }) {
     )
   }, [rawNotes, filter.search])
 
-  const filterTypeName = useMemo(() => {
-    return getFilterType(filter.type).name
+  const notFoundTitle = useMemo(() => {
+    return getLang('title.not-found', getLang(getFilterType(filter.type).name))
   }, [filter.type])
 
   useEffect(() => {
@@ -97,25 +100,20 @@ function Notes({ filter, onFilter }) {
   return (
     <div className='container'>
       <div className='flex items-center justify-between'>
-        <h1 className='text-2xl font-semibold text-gray-800'>My Notes</h1>
+        <h1 className='text-2xl font-semibold text-gray-800'>
+          {getLang('title.base')}
+        </h1>
         <div>
           <label htmlFor='filter-note' className='sr-only'>
-            Filter Note
+            {getLang('title.filter')}
           </label>
-          <select
+          <Dropdown
             id='filter-note'
-            className='block w-32 appearance-none rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-3.5 text-sm text-gray-900 focus:outline-blue-500 focus:ring-blue-500'
             onChange={handleChangeFilter}
             value={typeNote.slug}
-          >
-            {FILTER_NOTE_TYPE.map((val, idx) => {
-              return (
-                <option key={idx} value={val.slug}>
-                  {val.name}
-                </option>
-              )
-            })}
-          </select>
+            data={FILTER_NOTE_TYPE}
+            hasTranslation
+          />
         </div>
       </div>
       <div
@@ -133,7 +131,7 @@ function Notes({ filter, onFilter }) {
             return <Skeleton.SkeletonNoteCard key={idx} />
           })
         ) : !notes.length > 0 ? (
-          <Alert message={`Note ${filterTypeName} not found!`} />
+          <Alert message={notFoundTitle} />
         ) : (
           notes.map((val) => {
             return (

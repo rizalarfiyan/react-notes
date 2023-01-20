@@ -2,8 +2,8 @@ import React, { useMemo, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import NotificationProvider from './NotificationProvider'
 import { GlobalContext } from '../hooks'
-import { MODE, STORAGE_KEY } from '../constants'
-import { getDarkMode, hasLocalStorage } from '../utils'
+import { LANGUAGE, DEFAULT_LANGUAGE, MODE, STORAGE_KEY } from '../constants'
+import { getDarkMode, getObject, hasLocalStorage, stringFormat } from '../utils'
 import {
   getAccessToken,
   getUserLogged,
@@ -60,6 +60,37 @@ function GlobalProvider({ children }) {
     }
   }
 
+  const toggleMode = () => {
+    setIsDarkMode((prev) => !prev)
+    darkModeElement()
+    if (hasLocalStorage) {
+      localStorage.setItem(
+        STORAGE_KEY.theme,
+        isDarkMode ? MODE.dark : MODE.light
+      )
+    }
+  }
+
+  const defaultLang = LANGUAGE.find((val) => val.slug === DEFAULT_LANGUAGE)
+  const [lang, setLang] = useState(defaultLang)
+
+  const getLang = (value) => {
+    const langData = LANGUAGE.find((val) => val.slug === value)
+    if (!langData) {
+      return defaultLang
+    }
+    return langData
+  }
+
+  const changeLang = (language) => {
+    const langData = getLang(language)
+    setLang(langData)
+  }
+
+  const handleLang = (key, ...rest) => {
+    return stringFormat(getObject(key.toLowerCase(), lang.data) || key, ...rest)
+  }
+
   useEffect(() => {
     setAppInfo((prev) => ({ ...prev, message: 'Fetching data...' }))
     darkModeElement()
@@ -69,21 +100,15 @@ function GlobalProvider({ children }) {
   const data = useMemo(() => {
     return {
       isDarkMode,
-      toggleMode: () => {
-        setIsDarkMode((prev) => !prev)
-        darkModeElement()
-        if (hasLocalStorage) {
-          localStorage.setItem(
-            STORAGE_KEY.theme,
-            isDarkMode ? MODE.dark : MODE.light
-          )
-        }
-      },
+      toggleMode,
       auth,
       getUser: fetchUser,
       logout: clearAuth,
+      lang,
+      getLang: handleLang,
+      changeLang,
     }
-  }, [isDarkMode, auth, appInfo])
+  }, [isDarkMode, auth, appInfo, lang])
 
   if (appInfo.isDone) {
     return (

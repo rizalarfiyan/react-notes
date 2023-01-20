@@ -5,7 +5,7 @@ import { useForm, useGlobalData, useNotification } from '../hooks'
 import { login, putAccessToken } from '../utils'
 
 function Login() {
-  const { getUser } = useGlobalData()
+  const { getUser, getLang } = useGlobalData()
   const notification = useNotification()
   const navigate = useNavigate()
   const intialData = {
@@ -17,18 +17,18 @@ function Login() {
     switch (key) {
       case 'email':
         if (value === '') {
-          setError('email', 'Email is required')
+          setError('email', getLang('input.validation.email.required'))
           break
         }
         if (!value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
-          setError('email', 'Please enter a valid email address')
+          setError('email', getLang('input.validation.email.valid'))
           break
         }
         clearError('email')
         break
       case 'password':
         if (value === '') {
-          setError('password', 'Password is required')
+          setError('password', getLang('input.validation.password.required'))
           break
         }
         clearError('password')
@@ -68,14 +68,14 @@ function Login() {
 
   return (
     <MainContainer isCenter>
-      <CardInput title='Login'>
+      <CardInput title={getLang('title.login')}>
         <form className='w-full space-y-6' onSubmit={handleFormSubmit}>
           <Input
             id='email'
-            title='Email'
+            title={getLang('input.label.email')}
             type='email'
             name='email'
-            placeholder='Your email...'
+            placeholder={getLang('input.label.email')}
             value={form.email}
             error={error.email}
             onChange={handleChange}
@@ -83,10 +83,10 @@ function Login() {
           />
           <Input
             id='password'
-            title='Password'
+            title={getLang('input.label.email')}
             type='password'
             name='password'
-            placeholder='Your password...'
+            placeholder={getLang('input.label.password')}
             value={form.password}
             error={error.password}
             onChange={handleChange}
@@ -100,16 +100,16 @@ function Login() {
               disabled={isDisabled}
               rightIcon={<Icon name='login' className='ml-2 h-5 w-5' />}
             >
-              Login
+              {getLang('action.login')}
             </Button>
           </div>
           <div className='text-gray-600'>
-            <span>No account? </span>
+            <span>{getLang('title.no-account')}</span>
             <Link
               to='/register'
               className='text-blue-500 underline decoration-blue-500 underline-offset-4'
             >
-              Create One
+              {getLang('title.create-account')}
             </Link>
           </div>
         </form>

@@ -21,5 +21,6 @@ module.exports = {
     'react/no-array-index-key': 0,
     'import/no-cycle': 0,
     'no-nested-ternary': 0,
+    'react/forbid-prop-types': 0,
   },
 }

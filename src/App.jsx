@@ -8,18 +8,32 @@ import {
   Button,
   GuardedRoute,
   UserDropdown,
+  Dropdown,
 } from './components'
+import { LANGUAGE } from './constants'
 import { useGlobalData } from './hooks'
 import { ListNote, CreateNote, NotFound, DetailNote, Login } from './pages'
 import Register from './pages/Register'
 
 function App() {
-  const { isDarkMode, toggleMode, auth } = useGlobalData()
+  const { isDarkMode, toggleMode, auth, lang, getLang, changeLang } =
+    useGlobalData()
+
+  const handleLanguage = (event) => {
+    changeLang(event.target.value)
+    event.preventDefault()
+  }
 
   return (
     <>
       <Navbar>
         <div className='flex items-center justify-center gap-2'>
+          <Dropdown
+            value={lang.slug}
+            data={LANGUAGE}
+            onChange={handleLanguage}
+            className='w-[74px]'
+          />
           <Button
             className='rounded-full bg-transparent !px-2 text-blue-500 hover:bg-blue-50 focus:bg-blue-100 active:bg-blue-50'
             type='button'
@@ -33,13 +47,13 @@ function App() {
                 to='/'
                 rightIcon={<Icon name='note' className='ml-2 h-5 w-5' />}
               >
-                Notes
+                {getLang('title.note')}
               </Link>
               <Link
                 to='/create'
                 rightIcon={<Icon name='add' className='ml-2 h-5 w-5' />}
               >
-                Create
+                {getLang('action.create')}
               </Link>
               <UserDropdown />
             </>

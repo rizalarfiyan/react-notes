@@ -15,6 +15,7 @@ import Notification from './Notification'
 import MainContainer from './MainContainer'
 import GuardedRoute from './GuardedRoute'
 import UserDropdown from './UserDropdown'
+import Dropdown from './Dropdown'
 import Skeleton from './Skeleton'
 
 export {
@@ -34,6 +35,7 @@ export {
   Notification,
   MainContainer,
   GuardedRoute,
+  Dropdown,
   UserDropdown,
   Skeleton,
 }

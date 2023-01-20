@@ -3,7 +3,7 @@ import { classNames, gravatarUrl } from '../utils'
 import { useGlobalData } from '../hooks'
 
 function UserDropdown() {
-  const { auth, logout } = useGlobalData()
+  const { auth, logout, getLang } = useGlobalData()
 
   const [isOpen, setIsOpen] = useState(false)
   const toggleDropdown = () => setIsOpen((prev) => !prev)
@@ -54,7 +54,7 @@ function UserDropdown() {
               onClick={handleLogout}
               className='flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
             >
-              Logout
+              {getLang('action.logout')}
             </button>
           </li>
         </ul>

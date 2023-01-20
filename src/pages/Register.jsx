@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button, CardInput, Icon, Input, MainContainer } from '../components'
-import { useForm, useNotification } from '../hooks'
+import { useForm, useGlobalData, useNotification } from '../hooks'
 import { register } from '../utils'
 
 function Register() {
+  const { getLang } = useGlobalData()
   const notification = useNotification()
   const intialData = {
     email: '',
@@ -17,40 +18,46 @@ function Register() {
     switch (key) {
       case 'email':
         if (value === '') {
-          setError('email', 'Email is required')
+          setError('email', getLang('input.validation.email.required'))
           break
         }
         if (!value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
-          setError('email', 'Please enter a valid email address')
+          setError('email', getLang('input.validation.email.valid'))
           break
         }
         clearError('email')
         break
       case 'name':
         if (value === '') {
-          setError('name', 'Name is required')
+          setError('name', getLang('input.validation.name.required'))
           break
         }
         if (!value.match(/^(?!\s)([a-z ,.'-]+)$/i)) {
-          setError('name', 'Please enter a valid name')
+          setError('name', getLang('input.validation.name.valid'))
           break
         }
         clearError('name')
         break
       case 'password':
         if (value === '') {
-          setError('password', 'Password is required')
+          setError('password', getLang('input.validation.password.required'))
           break
         }
         clearError('password')
         break
       case 'password_confirmation':
         if (value === '') {
-          setError('password_confirmation', 'Password Confirmation is required')
+          setError(
+            'password_confirmation',
+            getLang('input.validation.password_confirmation.required')
+          )
           break
         }
         if (value !== current.password) {
-          setError('password', 'Password Confirmation does not match')
+          setError(
+            'password',
+            getLang('input.validation.password_confirmation.no-match')
+          )
           break
         }
         clearError('password')
@@ -89,14 +96,14 @@ function Register() {
 
   return (
     <MainContainer isCenter>
-      <CardInput title='Create an Account'>
+      <CardInput title={getLang('title.register')}>
         <form className='w-full space-y-6' onSubmit={handleFormSubmit}>
           <Input
             id='email'
-            title='Email'
+            title={getLang('input.label.email')}
             type='email'
             name='email'
-            placeholder='Your email...'
+            placeholder={getLang('input.placeholder.email')}
             value={form.email}
             error={error.email}
             onChange={handleChange}
@@ -104,10 +111,10 @@ function Register() {
           />
           <Input
             id='name'
-            title='Name'
+            title={getLang('input.label.name')}
             type='text'
             name='name'
-            placeholder='Your Name...'
+            placeholder={getLang('input.placeholder.name')}
             value={form.name}
             error={error.name}
             onChange={handleChange}
@@ -115,10 +122,10 @@ function Register() {
           />
           <Input
             id='password'
-            title='Password'
+            title={getLang('input.label.password')}
             type='password'
             name='password'
-            placeholder='Your password...'
+            placeholder={getLang('input.placeholder.password')}
             value={form.password}
             error={error.password}
             onChange={handleChange}
@@ -126,10 +133,10 @@ function Register() {
           />
           <Input
             id='password_confirmation'
-            title='Password Confirmation'
+            title={getLang('input.label.password_confirmation')}
             type='password'
             name='password_confirmation'
-            placeholder='Your password confirmation...'
+            placeholder={getLang('input.placeholder.password_confirmation')}
             value={form.password_confirmation}
             error={error.password_confirmation}
             onChange={handleChange}
@@ -143,16 +150,16 @@ function Register() {
               disabled={isDisabled}
               rightIcon={<Icon name='register' className='ml-2 h-5 w-5' />}
             >
-              Register
+              {getLang('action.register')}
             </Button>
           </div>
           <div className='text-gray-600'>
-            <span>Have an account? </span>
+            <span>{getLang('title.have-account')}</span>
             <Link
               to='/login'
               className='text-blue-500 underline decoration-blue-500 underline-offset-4'
             >
-              Go login
+              {getLang('title.go-login')}
             </Link>
           </div>
         </form>

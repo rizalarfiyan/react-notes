@@ -1,4 +1,3 @@
-/* eslint-disable react/forbid-prop-types */
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import NotificationMessage from './NotificationMessage'
