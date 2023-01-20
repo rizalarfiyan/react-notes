@@ -13,7 +13,7 @@ function Notes({ filter, onFilter }) {
     (val) => val.slug === DEFAULT_FILTER_SLUG
   )
 
-  const { getLang } = useGlobalData()
+  const { getLang, lang } = useGlobalData()
   const [typeNote, setTypeNote] = useState(defaultType)
   const [rawNotes, setRawNotes] = useState([])
   const [fetchStatus, setFetchStatus] = useState({
@@ -91,7 +91,7 @@ function Notes({ filter, onFilter }) {
 
   const notFoundTitle = useMemo(() => {
     return getLang('title.not-found', getLang(getFilterType(filter.type).name))
-  }, [filter.type])
+  }, [filter.type, lang])
 
   useEffect(() => {
     updateFilter(filter.type)
