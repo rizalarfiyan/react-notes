@@ -99,12 +99,12 @@ function DetailNote() {
   return (
     <MainContainer>
       <div className='container'>
-        <div className='relative h-full w-full rounded-md bg-white p-8 shadow-sm dark:bg-gray-600'>
+        <div className='relative h-full w-full rounded-md bg-white p-8 pt-14 shadow-sm dark:bg-gray-600'>
           <div className='text-center'>
             <h1 className='mb-2 text-4xl font-semibold text-gray-700 dark:text-white'>
               {note.title}
             </h1>
-            <div className='mb-6 flex items-center justify-center gap-6'>
+            <div className='mb-6 flex flex-wrap items-center justify-center space-x-6'>
               <div className='flex items-center gap-2 text-gray-600 dark:text-gray-300'>
                 <Icon className='h-5 w-5' name='calendar' />
                 <span>{formatDate}</span>
@@ -131,7 +131,7 @@ function DetailNote() {
             </Link>
           </div>
         </div>
-        <div className='mt-4 flex items-center justify-end gap-2'>
+        <div className='mt-4 flex flex-wrap items-center justify-end gap-2'>
           <Button
             type='button'
             rightIcon={

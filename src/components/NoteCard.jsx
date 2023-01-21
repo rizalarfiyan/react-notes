@@ -64,7 +64,7 @@ function NoteCard({ data, onDelete, onToggleArchive, triggerFetchData }) {
         </h2>
       </LinkDom>
       <p className='text-gray-700 dark:text-gray-300'>{data.body}</p>
-      <div className='mt-6 flex items-center justify-center gap-3'>
+      <div className='mt-6 flex flex-wrap items-center justify-center gap-3'>
         <Link
           to={`/note/${data.id}`}
           rightIcon={<Icon name='view' className='ml-2 h-5 w-5' />}

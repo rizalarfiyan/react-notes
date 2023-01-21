@@ -6,7 +6,7 @@ function MainContainer({ children, isCenter, className, ...rest }) {
   return (
     <main
       className={classNames(
-        'flex min-h-[calc(100vh-60px)] min-w-full flex-col gap-16 pt-32 xs:pt-28',
+        'flex min-h-[calc(100vh-60px)] min-w-full flex-col gap-16 pt-52 xxs:pt-40 xs:pt-28',
         isCenter && 'justify-center',
         className
       )}

@@ -32,12 +32,12 @@ function App() {
   return (
     <>
       <Navbar>
-        <div className='flex items-center justify-center gap-2'>
+        <div className='flex flex-wrap items-center justify-center gap-2'>
           <Dropdown
             value={lang.slug}
             data={LANGUAGE}
             onChange={handleLanguage}
-            className='w-[74px]'
+            className='!w-[74px]'
           />
           <Button
             className='rounded-full bg-transparent !px-2 text-blue-500 hover:bg-blue-50 focus:bg-blue-100 active:bg-blue-50'
