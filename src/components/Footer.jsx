@@ -5,7 +5,7 @@ function Footer() {
   return (
     <footer>
       <div className='container'>
-        <div className='border-t border-gray-200 py-4 text-center text-gray-600'>
+        <div className='border-t border-gray-200 py-4 text-center text-gray-600 dark:border-gray-600 dark:text-gray-500'>
           <span>Copyright &#169; {getYear()} </span>
           <a href='https://github.com/rizalarfiyan'>Rizal Arfiyan</a>
           <span> | All right reversed.</span>

@@ -24,6 +24,11 @@ function App() {
     event.preventDefault()
   }
 
+  const handleToggleMode = (event) => {
+    toggleMode(isDarkMode)
+    event.preventDefault()
+  }
+
   return (
     <>
       <Navbar>
@@ -37,9 +42,9 @@ function App() {
           <Button
             className='rounded-full bg-transparent !px-2 text-blue-500 hover:bg-blue-50 focus:bg-blue-100 active:bg-blue-50'
             type='button'
-            onClick={toggleMode}
+            onClick={handleToggleMode}
           >
-            <Icon name={isDarkMode ? 'dark' : 'light'} className='h-5 w-5' />
+            <Icon name={isDarkMode ? 'light' : 'dark'} className='h-5 w-5' />
           </Button>
           {auth && (
             <>

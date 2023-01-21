@@ -16,7 +16,7 @@ function Dropdown({
   return (
     <select
       className={classNames(
-        'block w-32 appearance-none rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-3.5 text-sm text-gray-900 focus:outline-blue-500 focus:ring-blue-500',
+        'block w-32 appearance-none rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-3.5 text-sm text-gray-900 focus:outline-blue-500 focus:ring-blue-500 dark:border-gray-400 dark:bg-gray-600 dark:text-white',
         className
       )}
       {...rest}

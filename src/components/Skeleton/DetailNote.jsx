@@ -3,7 +3,7 @@ import React from 'react'
 function SkeletonDetailNote() {
   return (
     <div role='status' className='container animate-pulse'>
-      <div className='relative mx-auto mb-4 rounded-md bg-white p-6 shadow-sm'>
+      <div className='relative mx-auto mb-4 rounded-md bg-white p-6 shadow-sm dark:bg-gray-600'>
         <div className='mx-auto mb-3 h-8 w-1/3 rounded-md bg-gray-200 dark:bg-gray-700' />
         <div className='absolute top-4 left-4'>
           <div className='h-6 w-20 rounded-md bg-gray-200 dark:bg-gray-700' />

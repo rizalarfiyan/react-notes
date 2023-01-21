@@ -103,11 +103,11 @@ function Login() {
               {getLang('action.login')}
             </Button>
           </div>
-          <div className='text-gray-600'>
+          <div className='text-gray-600 dark:text-gray-300'>
             <span>{getLang('title.no-account')}</span>
             <Link
               to='/register'
-              className='text-blue-500 underline decoration-blue-500 underline-offset-4'
+              className='text-blue-500 underline decoration-blue-500 underline-offset-4 dark:text-blue-300 dark:decoration-blue-300'
             >
               {getLang('title.create-account')}
             </Link>

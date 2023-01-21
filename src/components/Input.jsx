@@ -42,7 +42,9 @@ function Input({
         className={classNames(
           title !== ''
             ? `mb-2 block text-sm font-medium ${
-                hasErrorLimit ? 'text-red-500' : 'text-gray-900'
+                hasErrorLimit
+                  ? 'text-red-500 dark:text-red-400'
+                  : 'text-gray-900 dark:text-white'
               }`
             : 'sr-only'
         )}
@@ -56,8 +58,8 @@ function Input({
         className={classNames(
           'block w-full rounded-lg border p-2.5 text-sm',
           hasErrorLimit
-            ? 'border-red-300 bg-red-50 text-red-900 focus:outline-red-500 focus:ring-red-500'
-            : 'border-gray-300 bg-gray-50 text-gray-900 focus:outline-blue-500 focus:ring-blue-500',
+            ? 'dark border-red-300 bg-red-50 text-red-900 placeholder:text-red-400 focus:outline-red-500 focus:ring-red-500'
+            : 'border-gray-300 bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:outline-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-500 dark:text-white dark:placeholder:text-gray-300',
           Element === 'textarea' && 'max-h-[220px] min-h-[44px]'
         )}
         onChange={handleChange}
@@ -66,7 +68,9 @@ function Input({
       />
       <div className='flex items-start justify-between'>
         {hasError ? (
-          <p className='mt-1 text-left text-sm text-red-500'>{error}</p>
+          <p className='mt-1 text-left text-sm text-red-500 dark:text-red-400'>
+            {error}
+          </p>
         ) : (
           <p />
         )}
@@ -74,7 +78,7 @@ function Input({
           <p
             className={classNames(
               'mt-1 text-right text-sm',
-              isLimit ? 'text-red-500' : 'text-gray-600'
+              isLimit ? 'text-red-500 dark:text-red-400' : 'text-gray-600'
             )}
           >
             {length}/{limit}

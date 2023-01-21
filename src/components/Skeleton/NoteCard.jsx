@@ -4,7 +4,7 @@ function SkeletonNoteCard() {
   return (
     <div
       role='status'
-      className='mx-auto mb-4 animate-pulse space-y-4 rounded-md bg-white p-6 shadow-sm'
+      className='mx-auto mb-4 animate-pulse space-y-4 rounded-md bg-white p-6 shadow-sm dark:bg-gray-600'
     >
       <div className='h-5 w-3/4 rounded-md bg-gray-200 dark:bg-gray-700' />
       <div className='space-y-1.5'>

@@ -6,7 +6,7 @@ import { useGlobalData } from '../hooks'
 function Title() {
   const { auth } = useGlobalData()
   return (
-    <h1 className='text-2xl font-semibold text-gray-700'>
+    <h1 className='text-2xl font-semibold text-gray-700 dark:text-white'>
       {auth ? <Link to='/'>{APP_NAME}</Link> : APP_NAME}
     </h1>
   )

@@ -4,6 +4,7 @@ import {
   DEFAULT_LANGUAGE,
   FILTER_NOTE_TYPE,
   LANGUAGE,
+  MODE,
   STORAGE_KEY,
 } from '../constants'
 
@@ -46,7 +47,7 @@ const getDarkMode = () => {
   ).matches
   if (!hasLocalStorage) return getGlobalTheme
   return (
-    localStorage[STORAGE_KEY.theme] === 'dark' ||
+    localStorage[STORAGE_KEY.theme] === MODE.dark ||
     (!(STORAGE_KEY.theme in localStorage) && getGlobalTheme)
   )
 }

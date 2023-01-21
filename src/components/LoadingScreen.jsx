@@ -6,9 +6,9 @@ function LoadingScreen({ reason }) {
   return (
     <div className='loading-screen mx-auto flex min-h-screen w-full items-center justify-center'>
       <div className='flex flex-col items-center'>
-        <Spinner size='xl' />
+        <Spinner size='xl' className='dark:text-gray-300' />
         {reason && (
-          <span className='mt-4 max-w-[220px] text-center text-base text-gray-800'>
+          <span className='mt-4 max-w-[220px] text-center text-base text-gray-800 dark:text-gray-300'>
             {reason}
           </span>
         )}

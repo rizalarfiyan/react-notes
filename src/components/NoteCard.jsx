@@ -54,14 +54,16 @@ function NoteCard({ data, onDelete, onToggleArchive, triggerFetchData }) {
   }, [lang])
 
   return (
-    <div className='relative mb-4 break-inside-avoid rounded-md bg-white p-6 shadow-sm'>
-      <span className='text-sm text-gray-500'>{formatDate}</span>
+    <div className='relative mb-4 break-inside-avoid rounded-md bg-white p-6 shadow-sm dark:bg-gray-600'>
+      <span className='text-sm text-gray-500 dark:text-gray-300'>
+        {formatDate}
+      </span>
       <LinkDom to={`/note/${data.id}`}>
-        <h2 className='my-2 text-xl font-semibold text-gray-900 underline decoration-slate-200 underline-offset-4'>
+        <h2 className='my-2 text-xl font-semibold text-gray-900 underline decoration-slate-200 underline-offset-4 dark:text-white dark:decoration-slate-300'>
           {data.title}
         </h2>
       </LinkDom>
-      <p className='text-gray-700'>{data.body}</p>
+      <p className='text-gray-700 dark:text-gray-300'>{data.body}</p>
       <div className='mt-6 flex items-center justify-center gap-3'>
         <Link
           to={`/note/${data.id}`}

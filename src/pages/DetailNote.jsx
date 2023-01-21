@@ -86,7 +86,7 @@ function DetailNote() {
 
   const formatDate = useMemo(() => {
     return showFormattedDate(note.createdAt, lang.dateLocale)
-  }, [lang])
+  }, [note, lang])
 
   if (isLoading.global) {
     return (
@@ -99,17 +99,17 @@ function DetailNote() {
   return (
     <MainContainer>
       <div className='container'>
-        <div className='relative h-full w-full rounded-md bg-white p-8 shadow-sm'>
+        <div className='relative h-full w-full rounded-md bg-white p-8 shadow-sm dark:bg-gray-600'>
           <div className='text-center'>
-            <h1 className='mb-2 text-4xl font-semibold text-gray-700'>
+            <h1 className='mb-2 text-4xl font-semibold text-gray-700 dark:text-white'>
               {note.title}
             </h1>
             <div className='mb-6 flex items-center justify-center gap-6'>
-              <div className='flex items-center gap-2 text-gray-600'>
+              <div className='flex items-center gap-2 text-gray-600 dark:text-gray-300'>
                 <Icon className='h-5 w-5' name='calendar' />
                 <span>{formatDate}</span>
               </div>
-              <div className='flex items-center gap-2 text-gray-600'>
+              <div className='flex items-center gap-2 text-gray-600 dark:text-gray-300'>
                 <Icon className='h-6 w-6' name='label' />
                 <span>
                   {note.archived
@@ -119,7 +119,7 @@ function DetailNote() {
               </div>
             </div>
           </div>
-          <p className='text-gray-700'>{note.body}</p>
+          <p className='text-gray-700 dark:text-gray-300'>{note.body}</p>
           <div className='absolute top-4 left-4'>
             <Link
               to='/'
