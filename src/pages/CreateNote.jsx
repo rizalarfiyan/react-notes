@@ -6,7 +6,7 @@ import { useForm, useGlobalData, useNotification } from '../hooks'
 import { addNote } from '../utils'
 
 function CreateNote() {
-  const { getLang } = useGlobalData()
+  const { getLang, logout } = useGlobalData()
   const notification = useNotification()
   const navigate = useNavigate()
   const intialData = {
@@ -54,6 +54,11 @@ function CreateNote() {
     })
     setLoading(false)
     if (data.error) {
+      if (data.code === 401) {
+        logout()
+        notification.error(getLang('title.expired'))
+        return
+      }
       notification.error(data.message)
       return
     }

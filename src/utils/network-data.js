@@ -32,11 +32,17 @@ const login = async ({ email, password }) => {
   const responseJson = await response.json()
 
   if (responseJson.status !== 'success') {
-    return { error: true, data: null, message: responseJson.message }
+    return {
+      error: true,
+      code: response.status,
+      data: null,
+      message: responseJson.message,
+    }
   }
 
   return {
     error: false,
+    code: response.status,
     data: responseJson.data,
     message: responseJson.message,
   }
@@ -54,10 +60,20 @@ const register = async ({ name, email, password }) => {
   const responseJson = await response.json()
 
   if (responseJson.status !== 'success') {
-    return { error: true, message: responseJson.message }
+    return {
+      error: true,
+      code: response.status,
+      data: null,
+      message: responseJson.message,
+    }
   }
 
-  return { error: false, message: responseJson.message }
+  return {
+    error: false,
+    code: response.status,
+    data: null,
+    message: responseJson.message,
+  }
 }
 
 const getUserLogged = async () => {
@@ -65,11 +81,17 @@ const getUserLogged = async () => {
   const responseJson = await response.json()
 
   if (responseJson.status !== 'success') {
-    return { error: true, data: null, message: responseJson.message }
+    return {
+      error: true,
+      code: response.status,
+      data: null,
+      message: responseJson.message,
+    }
   }
 
   return {
     error: false,
+    code: response.status,
     data: responseJson.data,
     message: responseJson.message,
   }
@@ -87,11 +109,17 @@ const addNote = async ({ title, body }) => {
   const responseJson = await response.json()
 
   if (responseJson.status !== 'success') {
-    return { error: true, data: null, message: responseJson.message }
+    return {
+      error: true,
+      code: response.status,
+      data: null,
+      message: responseJson.message,
+    }
   }
 
   return {
     error: false,
+    code: response.status,
     data: responseJson.data,
     message: responseJson.message,
   }
@@ -102,11 +130,17 @@ const getActiveNotes = async () => {
   const responseJson = await response.json()
 
   if (responseJson.status !== 'success') {
-    return { error: true, data: null, message: responseJson.message }
+    return {
+      error: true,
+      code: response.status,
+      data: null,
+      message: responseJson.message,
+    }
   }
 
   return {
     error: false,
+    code: response.status,
     data: responseJson.data,
     message: responseJson.message,
   }
@@ -117,11 +151,17 @@ const getArchivedNotes = async () => {
   const responseJson = await response.json()
 
   if (responseJson.status !== 'success') {
-    return { error: true, data: null, message: responseJson.message }
+    return {
+      error: true,
+      code: response.status,
+      data: null,
+      message: responseJson.message,
+    }
   }
 
   return {
     error: false,
+    code: response.status,
     data: responseJson.data,
     message: responseJson.message,
   }
@@ -132,11 +172,17 @@ const getNote = async (id) => {
   const responseJson = await response.json()
 
   if (responseJson.status !== 'success') {
-    return { error: true, data: null, message: responseJson.message }
+    return {
+      error: true,
+      code: response.status,
+      data: null,
+      message: responseJson.message,
+    }
   }
 
   return {
     error: false,
+    code: response.status,
     data: responseJson.data,
     message: responseJson.message,
   }
@@ -150,11 +196,17 @@ const archiveNote = async (id) => {
   const responseJson = await response.json()
 
   if (responseJson.status !== 'success') {
-    return { error: true, data: null, message: responseJson.message }
+    return {
+      error: true,
+      code: response.status,
+      data: null,
+      message: responseJson.message,
+    }
   }
 
   return {
     error: false,
+    code: response.status,
     data: responseJson.data,
     message: responseJson.message,
   }
@@ -171,11 +223,17 @@ const unarchiveNote = async (id) => {
   const responseJson = await response.json()
 
   if (responseJson.status !== 'success') {
-    return { error: true, data: null, message: responseJson.message }
+    return {
+      error: true,
+      code: response.status,
+      data: null,
+      message: responseJson.message,
+    }
   }
 
   return {
     error: false,
+    code: response.status,
     data: responseJson.data,
     message: responseJson.message,
   }
@@ -198,11 +256,17 @@ const deleteNote = async (id) => {
   const responseJson = await response.json()
 
   if (responseJson.status !== 'success') {
-    return { error: true, data: null, message: responseJson.message }
+    return {
+      error: true,
+      code: response.status,
+      data: null,
+      message: responseJson.message,
+    }
   }
 
   return {
     error: false,
+    code: response.status,
     data: responseJson.data,
     message: responseJson.message,
   }

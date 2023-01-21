@@ -59,7 +59,8 @@
     "create-account": "Create One",
     "register": "Create an Account",
     "have-account": "Have an account? ",
-    "go-login": "Go login"
+    "go-login": "Go login",
+    "expired": "Token expired, please login again!"
   },
   "action": {
     "view": "View",

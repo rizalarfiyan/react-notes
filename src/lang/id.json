@@ -59,7 +59,8 @@
     "create-account": "Buat baru",
     "register": "Buat akun baru",
     "have-account": "Punya akun? ",
-    "go-login": "Kembali masuk"
+    "go-login": "Kembali masuk",
+    "expired": "Token sudah habis, solahkan masuk kembali!"
   },
   "action": {
     "view": "Lihat",

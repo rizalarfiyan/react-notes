@@ -10,7 +10,7 @@ import {
 import { useGlobalData, useNotification } from '../hooks'
 
 function DetailNote() {
-  const { getLang, lang } = useGlobalData()
+  const { getLang, lang, logout } = useGlobalData()
   const [note, setNote] = useState({
     id: '',
     title: '',
@@ -34,6 +34,11 @@ function DetailNote() {
     const data = await getNote(id)
     setIsLoading((prev) => ({ ...prev, global: false }))
     if (data.error) {
+      if (data.code === 401) {
+        logout()
+        notification.error(getLang('title.expired'))
+        return
+      }
       notification.error(data.message)
       navigate('/')
       return
@@ -50,6 +55,11 @@ function DetailNote() {
     const res = await deleteNote(id)
     setIsLoading((prev) => ({ ...prev, delete: false }))
     if (res.error) {
+      if (res.code === 401) {
+        logout()
+        notification.error(getLang('title.expired'))
+        return
+      }
       notification.error(res.message)
       return
     }
@@ -62,6 +72,11 @@ function DetailNote() {
     const res = await toggleArchiveNote(id, note.archived)
     setIsLoading((prev) => ({ ...prev, toggle: false }))
     if (res.error) {
+      if (res.code === 401) {
+        logout()
+        notification.error(getLang('title.expired'))
+        return
+      }
       notification.error(res.message)
       return
     }

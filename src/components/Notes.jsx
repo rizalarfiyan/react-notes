@@ -6,16 +6,17 @@ import { classNames, deleteNote, toggleArchiveNote } from '../utils'
 import Alert from './Alert'
 import Skeleton from './Skeleton'
 import Dropdown from './Dropdown'
-import { useGlobalData } from '../hooks'
+import { useGlobalData, useNotification } from '../hooks'
 
 function Notes({ filter, onFilter }) {
   const defaultType = FILTER_NOTE_TYPE.find(
     (val) => val.slug === DEFAULT_FILTER_SLUG
   )
 
-  const { getLang, lang } = useGlobalData()
+  const { getLang, lang, logout } = useGlobalData()
   const [typeNote, setTypeNote] = useState(defaultType)
   const [rawNotes, setRawNotes] = useState([])
+  const notification = useNotification()
   const [fetchStatus, setFetchStatus] = useState({
     message: '',
     isLoading: true,
@@ -55,6 +56,11 @@ function Notes({ filter, onFilter }) {
     const data = await getFilterType(type).callback()
     setLoading(false)
     if (data.error) {
+      if (data.code === 401) {
+        logout()
+        notification.error(getLang('title.expired'))
+        return
+      }
       setFetchStatus((prev) => ({
         ...prev,
         isError: true,

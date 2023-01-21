@@ -8,7 +8,7 @@ import Icon from './Icon'
 import { useGlobalData, useNotification } from '../hooks'
 
 function NoteCard({ data, onDelete, onToggleArchive, triggerFetchData }) {
-  const { lang, getLang } = useGlobalData()
+  const { lang, getLang, logout } = useGlobalData()
   const [isLoading, setIsLoading] = useState({
     delete: false,
     toggle: false,
@@ -20,6 +20,11 @@ function NoteCard({ data, onDelete, onToggleArchive, triggerFetchData }) {
     const res = await onDelete(data.id)
     setIsLoading((prev) => ({ ...prev, delete: false }))
     if (res.error) {
+      if (res.code === 401) {
+        logout()
+        notification.error(getLang('title.expired'))
+        return
+      }
       notification.error(res.message)
       return
     }
@@ -32,6 +37,11 @@ function NoteCard({ data, onDelete, onToggleArchive, triggerFetchData }) {
     const res = await onToggleArchive(data.id, data.archived)
     setIsLoading((prev) => ({ ...prev, toggle: false }))
     if (res.error) {
+      if (res.code === 401) {
+        logout()
+        notification.error(getLang('title.expired'))
+        return
+      }
       notification.error(res.message)
       return
     }
